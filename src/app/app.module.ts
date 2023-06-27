@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PhysicianComponent } from './physician/physician.component';
 import { ReactiveFormsModule } from '@angular/forms'; 
-
+import { PatientComponent } from './patient/patient.component';
 @NgModule({
   declarations: [
     AppComponent,
+    PatientComponent,
     PhysicianComponent
   ],
   imports: [
