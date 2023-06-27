@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PatientServiceService } from '../service/Patient/patient-service.service';
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -14,7 +15,9 @@ export class PatientComponent {
     insuranceID: new FormControl(),
     pcp: new FormControl(),
   });
-  addPatient = (formData: any) => {
-    console.log(formData);
+
+  constructor(public patientService: PatientServiceService) { }
+  addPatient = (data: any) => {
+    this.patientService.save(data).subscribe((response: any) => console.log(response));
   };
 }
