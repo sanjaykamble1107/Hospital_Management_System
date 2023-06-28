@@ -11,6 +11,6 @@ export class AppointmentServiceService {
   constructor(private http: HttpClient) { }
 
   public save = (data: any) => {
-    return this.http.post(`${this.rootUrl}`, data)
+    return this.http.post(`${this.rootUrl}/`, data)
   }
 }
