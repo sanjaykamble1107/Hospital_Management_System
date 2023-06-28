@@ -4,12 +4,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NurseComponent } from './nurse/nurse.component';
 import { PatientComponent } from './patient/patient.component';
 import { PhysicianComponent } from './physician/physician.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "Home", component: DashboardComponent },
 { path: "Physician", component: PhysicianComponent },
 { path: "Patient", component: PatientComponent },
-{path:"Nurse",component:NurseComponent},
+{ path: "Nurse", component: NurseComponent },
+{ path: "Appointment", component: AppointmentComponent },
 { path: "**", redirectTo: "Home" }];
 
 @NgModule({

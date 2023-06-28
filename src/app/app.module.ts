@@ -9,6 +9,7 @@ import { PatientComponent } from './patient/patient.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NurseComponent } from './nurse/nurse.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,8 @@ import { NurseComponent } from './nurse/nurse.component';
     PhysicianComponent,
     SidebarComponent,
     DashboardComponent,
-    NurseComponent
+    NurseComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
