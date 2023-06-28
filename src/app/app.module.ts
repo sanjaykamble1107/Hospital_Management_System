@@ -8,13 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PatientComponent } from './patient/patient.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NurseComponent } from './nurse/nurse.component';
 @NgModule({
   declarations: [
     AppComponent,
     PatientComponent,
     PhysicianComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    NurseComponent
   ],
   imports: [
     BrowserModule,
