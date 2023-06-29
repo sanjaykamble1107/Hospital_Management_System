@@ -2,30 +2,35 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 :root {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: "Open Sans", sans-serif;
-    background:#f4dcf5;
-    color: #444444;
-  }
-  
-  a {
-    color: #4154f1;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #717ff5;
-    text-decoration: none;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Nunito", sans-serif;
-  }
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background: #f4dcf5;
+  color: #444444;
+}
+
+a {
+  color: #4154f1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #717ff5;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+}
+
+.custom-card {
+  border: none;
+  position: relative;
+}
