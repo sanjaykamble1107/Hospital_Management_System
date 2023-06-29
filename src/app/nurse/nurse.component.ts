@@ -19,8 +19,8 @@ export class NurseComponent {
 
   constructor(public nurseService: NurseServiceService) { }
   addNurse = (data: any) => {
-    if(data.isValid){
-      this.nurseService.save(data).subscribe((response: any) => console.log(response));
+    if(data.valid){
+      this.nurseService.save(data.value).subscribe((response: any) => alert(response.response));
     }
     else{
       alert("All Data is Required")

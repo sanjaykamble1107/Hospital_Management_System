@@ -17,14 +17,21 @@ export class AppointmentComponent {
     startDateTime: new FormControl(''),
     endDateTime: new FormControl(''),
     examinationRoom: new FormControl('')
-
   })
 
+
+
   constructor(public appointmentservice: AppointmentServiceService) { }
+  public character: string | undefined;
+  handleroom(event: any) {
+    this.character = event.target.value;
+
+  }
 
   addAppointment = (data: any) => {
-    if (data.Valid) {
-      this.appointmentservice.save(data).subscribe((response: any) => console.log(response));
+    if (data.valid) {
+      data.value.examinationRoom = data.value.examinationRoom.toUpperCase();
+      this.appointmentservice.save(data.value).subscribe((response: any) => alert(response.response));
     } else {
       alert("All Data is Required")
     }

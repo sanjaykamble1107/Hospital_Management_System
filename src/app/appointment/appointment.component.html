@@ -6,12 +6,12 @@
         <div class="card-body">
             <div class="row m-2">
                 <div class="col-md-4"> <label class="form-label">AppointmentID</label></div>
-                <div class="col-md-8"> <input type="text" class="form-control" placeholder="Enter AppointmentID"
+                <div class="col-md-8"> <input type="number" class="form-control" min="0"  placeholder="Enter AppointmentID"
                         formControlName="appointmentId" required></div>
             </div>
             <div class="row m-2">
                 <div class="col-md-4"> <label class="form-label">PatientID</label></div>
-                <div class="col-md-8"> <input type="text" class="form-control" placeholder="Enter PatientID"
+                <div class="col-md-8"> <input type="number" class="form-control" placeholder="Enter PatientID"
                         formControlName="patient" required></div>
             </div>
             <div class="row m-2">
@@ -24,7 +24,7 @@
             <div class="row m-2">
                 <div class="col-md-4"> <label class="form-label">PhysicianID</label>
                 </div>
-                <div class="col-md-8"> <input type="text" class="form-control" placeholder="Enter PhysicianID"
+                <div class="col-md-8"> <input type="number" class="form-control" placeholder="Enter PhysicianID"
                         formControlName="physician" required>
                 </div>
             </div>
@@ -44,7 +44,8 @@
             <div class="row m-2">
                 <div class="col-md-4"> <label class="form-label">ExaminationRoom</label>
                 </div>
-                <div class="col-md-8"> <input type="text" class="form-control" placeholder="Enter ExaminationRoom"
+                <div class="col-md-8"> <input type="text" class="form-control" maxlength="1"             
+                    (input)="handleroom($event)" placeholder="Enter ExaminationRoom"
                         formControlName="examinationRoom" required></div>
             </div>
 

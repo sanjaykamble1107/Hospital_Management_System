@@ -16,12 +16,17 @@ export class PatientComponent {
     pcp: new FormControl(),
   });
 
-  constructor(public patientService: PatientServiceService) { }
+
+
+  constructor(public patientService: PatientServiceService) {
+  
+   }
   addPatient = (data: any) => {
     if(data.Valid){
-    this.patientService.save(data).subscribe((response: any) => console.log(response));
+    this.patientService.save(data.value).subscribe((response: any) => alert(response.response));
   }else{
     alert("All Data is Required")
   }
 }
+
 }
