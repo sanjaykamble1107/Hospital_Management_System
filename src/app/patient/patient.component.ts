@@ -18,6 +18,10 @@ export class PatientComponent {
 
   constructor(public patientService: PatientServiceService) { }
   addPatient = (data: any) => {
+    if(data.Valid){
     this.patientService.save(data).subscribe((response: any) => console.log(response));
-  };
+  }else{
+    alert("All Data is Required")
+  }
+}
 }

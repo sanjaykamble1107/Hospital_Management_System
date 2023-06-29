@@ -13,6 +13,7 @@ export class PhysicianComponent {
     name: new FormControl(''),
     position: new FormControl(''),
     ssn: new FormControl()
+    
   })
 
   constructor(public physicianService: PhysicianServiceService) { }
@@ -20,4 +21,6 @@ export class PhysicianComponent {
   addPhysician = (data: any) => {
     this.physicianService.save(data).subscribe((response: any) => console.log(response));
   }
+ 
+  
 }

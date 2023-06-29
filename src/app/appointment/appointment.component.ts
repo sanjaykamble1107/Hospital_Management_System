@@ -23,7 +23,11 @@ export class AppointmentComponent {
   constructor(public appointmentservice: AppointmentServiceService) { }
 
   addAppointment = (data: any) => {
+    if(data.Valid){
     this.appointmentservice.save(data).subscribe((response: any) => console.log(response));
+  }else{
+    alert("All Data is Required")
   }
+}
 
 }
