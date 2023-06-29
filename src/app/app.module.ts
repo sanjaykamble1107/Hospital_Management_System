@@ -11,6 +11,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NurseComponent } from './nurse/nurse.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentlistComponent } from './appointmentlist/appointmentlist.component';
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> Feature/FrontEnd/Harsh/listcomponent
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,8 +24,12 @@ import { AppointmentlistComponent } from './appointmentlist/appointmentlist.comp
     SidebarComponent,
     DashboardComponent,
     NurseComponent,
+<<<<<<< HEAD
     AppointmentComponent,
     AppointmentlistComponent
+=======
+    AppointmentComponent, AppointmentlistComponent
+>>>>>>> Feature/FrontEnd/Harsh/listcomponent
   ],
   imports: [
     BrowserModule,

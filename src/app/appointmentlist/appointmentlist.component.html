@@ -1,1 +1,51 @@
-<p>appointmentlist works!</p>
+<div class="card custom-card shadow col-md-12 m-2 border-0">
+  <div class="card-header text-center border-0" style="background-color: #f2dcff;">
+    <h2>List of Appointment</h2>
+  </div>
+  <div class="card-body">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">AppointmentID</th>
+          <th scope="col">PatientID</th>
+          <th scope="col">Preparation Nurse</th>
+          <th scope="col">PhysicianID</th>
+          <th scope="col">Start Date Time</th>
+          <th scope="col">End Date Time</th>
+          <th scope="col">ExaminationRoom</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let app of appointmentlist">
+          <td>
+            {{app.appointmentId}}
+          </td>
+          <td>
+            {{app.patient}}
+          </td>
+          <td>
+            {{app.prepNurse}}
+          </td>
+          <td>
+            {{app.physician}}
+          </td>
+          <td>
+            {{app.startDateTime}}
+          </td>
+          <td>
+            {{app.endDateTime}}
+          </td>
+          <td>
+            {{app.examinationRoom}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+</div>
+>>>>>>> Feature/FrontEnd/Harsh/listcomponent
