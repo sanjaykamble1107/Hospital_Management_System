@@ -10,6 +10,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NurseComponent } from './nurse/nurse.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { NursetableComponent } from './nursetable/nursetable.component';
+import { PatienttableComponent } from './patienttable/patienttable.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,14 +20,17 @@ import { AppointmentComponent } from './appointment/appointment.component';
     SidebarComponent,
     DashboardComponent,
     NurseComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    NursetableComponent,
+    PatienttableComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule, HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

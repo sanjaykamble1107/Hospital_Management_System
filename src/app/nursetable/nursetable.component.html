@@ -1,0 +1,42 @@
+<div class="card custom-card shadow col-md-12 m-2 border-0">
+  <div
+    class="card-header text-center border-0"
+    style="background-color: #f2dcff"
+  >
+    <h3>List of Nurses</h3>
+  </div>
+
+  <div class="card-boday">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">EmployeeID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Position</th>
+          <th scope="col">Registered</th>
+          <th scope="col">SSN</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let app of nurselist">
+          <td>
+            {{ app.employeeId }}
+          </td>
+          <td>
+            {{ app.name }}
+          </td>
+          <td>
+            {{ app.position }}
+          </td>
+          <td>
+            {{ app.registered }}
+          </td>
+          <td>
+            {{ app.ssn }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
