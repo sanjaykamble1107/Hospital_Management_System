@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { EMPTY } from 'rxjs';
 import { PhysicianServiceService } from '../service/Physician/physician-service.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { PhysicianServiceService } from '../service/Physician/physician-service.
   styleUrls: ['./physician.component.css']
 })
 export class PhysicianComponent {
+
   physicianForm = new FormGroup({
     employeeId: new FormControl(),
     name: new FormControl(''),
@@ -18,6 +20,11 @@ export class PhysicianComponent {
   constructor(public physicianService: PhysicianServiceService) { }
 
   addPhysician = (data: any) => {
-    this.physicianService.save(data).subscribe((response: any) => console.log(response));
+    if(data.Valid){
+      this.physicianService.save(data).subscribe((response: any) => console.log(response));
+    }else{
+      alert("All Data is Required")
+    }
   }
+
 }

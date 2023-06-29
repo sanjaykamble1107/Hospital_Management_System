@@ -23,7 +23,8 @@ export class AppointmentComponent {
   constructor(public appointmentservice: AppointmentServiceService) { }
 
   addAppointment = (data: any) => {
-    this.appointmentservice.save(data).subscribe((response: any) => console.log(response));
+    data.isValid
+    this.appointmentservice.save(data.value).subscribe((response: any) => console.log(response));
   }
 
 }
