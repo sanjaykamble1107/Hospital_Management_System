@@ -11,11 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NurseComponent } from './nurse/nurse.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentlistComponent } from './appointmentlist/appointmentlist.component';
-<<<<<<< HEAD
-=======
-
-
->>>>>>> Feature/FrontEnd/Harsh/listcomponent
+import { NursetableComponent } from './nursetable/nursetable.component';
+import { PatienttableComponent } from './patienttable/patienttable.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,19 +21,19 @@ import { AppointmentlistComponent } from './appointmentlist/appointmentlist.comp
     SidebarComponent,
     DashboardComponent,
     NurseComponent,
-<<<<<<< HEAD
     AppointmentComponent,
-    AppointmentlistComponent
-=======
-    AppointmentComponent, AppointmentlistComponent
->>>>>>> Feature/FrontEnd/Harsh/listcomponent
+    AppointmentlistComponent,
+    AppointmentComponent,
+    NursetableComponent,
+    PatienttableComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule, HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
