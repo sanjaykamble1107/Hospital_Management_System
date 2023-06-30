@@ -15,4 +15,5 @@ export class PatientServiceService {
   public  get =() =>{
     return this.http.get(`${this.rootUrl}`)
    }
+   
 }

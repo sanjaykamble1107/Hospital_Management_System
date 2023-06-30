@@ -14,20 +14,56 @@
                 <div class="col-md-8"> <input type="number" class="form-control" placeholder="Enter PatientID"
                         formControlName="patient" required></div>
             </div>
-            <div class="row m-2">
+            <!-- <div class="row m-2">
                 <div class="col-md-4"> <label class="form-label">Preparation Nurse</label>
                 </div>
                 <div class="col-md-8"> <input type="text" class="form-control" placeholder="Enter Preparation Nurse"
                         formControlName="prepNurse" required>
                 </div>
-            </div>
+            </div> -->
+
             <div class="row m-2">
+                <div class="col-md-4">Preparation Nurse</div>
+                <div class="col-md-8">
+                  <tr>
+                    <td>
+                      <select name="nurse" class="form-control" required>
+                        <option >--select--</option>
+                        <option *ngFor="let nurse of nurselist">
+                          {{nurse.prepNurse}}
+                          </option>
+                      </select>
+                    </td>
+                  </tr>
+                  </div>
+                  </div>
+        
+
+            <!-- <div class="row m-2">
                 <div class="col-md-4"> <label class="form-label">PhysicianID</label>
                 </div>
                 <div class="col-md-8"> <input type="number" class="form-control" placeholder="Enter PhysicianID"
                         formControlName="physician" required>
                 </div>
-            </div>
+            </div> -->
+
+            <div class="row m-2">
+                <div class="col-md-4">PhysicianID</div>
+                <div class="col-md-8">
+                  <tr>
+                    <td>
+                      <select name="physician" class="form-control" required>
+                        <option >--select--</option>
+                        <option *ngFor="let physician of physicianlist" value={{physician.employeeId}}>
+                          {{physician.employeeId}} -
+                          {{physician.name}}
+                          </option>
+                      </select>
+                    </td>
+                  </tr>
+                  </div>
+                  </div>
+
             <div class="row m-2">
                 <div class="col-md-4"> <label class="form-label">Start Date Time</label>
                 </div>

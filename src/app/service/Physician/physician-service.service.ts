@@ -12,4 +12,8 @@ export class PhysicianServiceService {
   public save = (data: any) => {
     return this.http.post(`${this.rootUrl}`, data)
   }
+
+  public get =() =>{
+    return this.http.get(`${this.rootUrl}`)
+  } 
 }

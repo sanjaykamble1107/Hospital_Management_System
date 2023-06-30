@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PatientServiceService } from '../service/Patient/patient-service.service';
 @Component({
@@ -6,7 +6,7 @@ import { PatientServiceService } from '../service/Patient/patient-service.servic
   templateUrl: './patient.component.html',
   styleUrls: ['./patient.component.css'],
 })
-export class PatientComponent {
+export class PatientComponent implements OnInit {
   patientForm = new FormGroup({
     ssn: new FormControl(),
     name: new FormControl(''),
@@ -21,6 +21,7 @@ export class PatientComponent {
   constructor(public patientService: PatientServiceService) {
   
    }
+ 
   addPatient = (data: any) => {
     if(data.Valid){
     this.patientService.save(data.value).subscribe((response: any) => alert(response.response));
@@ -29,4 +30,8 @@ export class PatientComponent {
   }
 }
 
+physicianlist:any=[]
+ngOnInit(): void {   
+  this.patientService.get().subscribe((response:any)=>this.physicianlist=[...response])
+}
 }

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AppointmentServiceService } from '../service/Appointment/appointment-service.service';
+import { PhysicianServiceService } from '../service/Physician/physician-service.service';
 
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.css']
 })
-export class AppointmentComponent {
+export class AppointmentComponent implements OnInit {
 
   appointmentForm = new FormGroup({
     appointmentId: new FormControl(''),
@@ -21,7 +22,18 @@ export class AppointmentComponent {
 
 
 
-  constructor(public appointmentservice: AppointmentServiceService) { }
+  constructor(public appointmentservice: AppointmentServiceService, public physicianService: PhysicianServiceService) {
+
+  }
+  nurselist: any = []
+  physicianlist: any = []
+  ngOnInit(): void {
+    this.appointmentservice.get().subscribe((response: any) => this.nurselist = [...response])
+
+    this.physicianService.get().subscribe((response: any) => this.physicianlist = [...response])
+
+  }
+
   public character: string | undefined;
   handleroom(event: any) {
     this.character = event.target.value;

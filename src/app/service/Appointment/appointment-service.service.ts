@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class AppointmentServiceService {
 
   private rootUrl: string = "http://localhost:9090/api/appointment"
+  
 
   constructor(private http: HttpClient) { }
 

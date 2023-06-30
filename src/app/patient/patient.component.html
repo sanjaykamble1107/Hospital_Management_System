@@ -35,12 +35,27 @@
             class="form-control" required />
         </div>
       </div>
-      <div class="row m-2">
+      <!-- <div class="row m-2">
         <div class="col-md-4">PCP</div>
         <div class="col-md-8">
           <input type="Number" placeholder="Enter PCP" min="0" formControlName="pcp" class="form-control" required />
         </div>
-      </div>
+      </div> -->
+      <div class="row m-2">
+        <div class="col-md-4">PCP</div>
+        <div class="col-md-8">
+          <tr>
+            <td>
+              <select name="patient" class="form-control">
+                <option >--select--</option>
+                <option *ngFor="let pat of physicianlist">
+                  {{pat.pcp}}
+                  </option>
+              </select>
+            </td>
+          </tr>
+          </div>
+          </div>
 
       <div class="d-flex align-items-center justify-content-center">
         <div class="row m-2">
