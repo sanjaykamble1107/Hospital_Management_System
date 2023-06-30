@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { PhysicianServiceService } from '../service/Physician/physician-service.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class PhysicianComponent {
   })
 
   constructor(public physicianService: PhysicianServiceService) { }
-
+  inputValue: string='';
   addPhysician = (data: any) => {
     if(data.valid){
       this.physicianService.save(data.value).subscribe((response: any) =>alert(response.response));
