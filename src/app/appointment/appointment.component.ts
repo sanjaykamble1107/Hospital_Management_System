@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AppointmentServiceService } from '../service/Appointment/appointment-service.service';
+import { NurseServiceService } from '../service/Nurse/nurse-service.service';
 import { PhysicianServiceService } from '../service/Physician/physician-service.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class AppointmentComponent implements OnInit {
 
 
 
-  constructor(public appointmentservice: AppointmentServiceService, public physicianService: PhysicianServiceService) {
+  constructor(public appointmentservice: AppointmentServiceService, public physicianService: PhysicianServiceService,public nurseService:NurseServiceService) {
 
   }
   nurselist: any = []
@@ -31,6 +32,8 @@ export class AppointmentComponent implements OnInit {
     this.appointmentservice.get().subscribe((response: any) => this.nurselist = [...response])
 
     this.physicianService.get().subscribe((response: any) => this.physicianlist = [...response])
+
+    this.nurseService.get().subscribe((response: any)=> this.nurselist=[...response])
 
   }
 

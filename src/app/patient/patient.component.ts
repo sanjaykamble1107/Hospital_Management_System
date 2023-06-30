@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PatientServiceService } from '../service/Patient/patient-service.service';
+import { PhysicianServiceService } from '../service/Physician/physician-service.service';
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -18,7 +19,7 @@ export class PatientComponent implements OnInit {
 
 
 
-  constructor(public patientService: PatientServiceService) {
+  constructor(public patientService: PatientServiceService ,public physicianService: PhysicianServiceService){
   
    }
  
@@ -32,6 +33,7 @@ export class PatientComponent implements OnInit {
 
 physicianlist:any=[]
 ngOnInit(): void {   
-  this.patientService.get().subscribe((response:any)=>this.physicianlist=[...response])
+  this.patientService.get().subscribe((response: any)=>this.physicianlist=[...response])
+  this.physicianService.get().subscribe((response:any)=>this.physicianlist=[...response])
 }
 }
