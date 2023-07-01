@@ -16,6 +16,9 @@ import { PatienttableComponent } from './patienttable/patienttable.component';
 import { PhysicianlistComponent } from './physicianlist/physicianlist.component';
 import { DepartmentlistComponent } from './departmentlist/departmentlist.component';
 import { DepartmentComponent } from './department/department.component';
+import { ProcedureComponent } from './procedure/procedure.component';
+import { ProcedurelistComponent } from './procedurelist/procedurelist.component';
+import { TrainedInComponent } from './trainedin/trained-in.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,10 @@ import { DepartmentComponent } from './department/department.component';
     PatienttableComponent,
     PhysicianlistComponent,
     DepartmentlistComponent,
-    DepartmentComponent,],
+    DepartmentComponent,
+    ProcedureComponent,
+    ProcedurelistComponent,
+    TrainedInComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
