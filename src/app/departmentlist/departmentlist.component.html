@@ -2,6 +2,28 @@
     <div class="card-header text-center border-0" style="background-color: #f2dcff;">
       <h2>List of Departments</h2>
     </div>
+    <div class="container mt-4 ">
+      <div class="row">
+        <div class="col">
+          <select class="form-select" aria-label="Default select example">
+              <option selected>--Search department by--</option>
+              <option value="1">Search by DepartmentId</option>
+              <option value="2">Search Head by DepartmentId</option>
+              <option value="3">Search by HeadId</option>
+              <option value="4">Search physician is head of any department or not by PhysicianId</option>
+            </select>
+        </div>
+        
+        <div class="col">
+          <div class="input-group">
+              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+              <button type="button" class="btn btn-outline-primary">search</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    
     <div class="card-body">
       <table class="table">
         <thead>
@@ -15,13 +37,13 @@
         <tbody>
           <tr *ngFor="let row of departmentlist">
           <td>
-            {{ row.DepartmentID }}
+            {{ row.departmentId }}
           </td>
           <td>
-            {{ row.Name }}
+            {{ row.name}}
           </td>
           <td>
-            {{ row.Head }}
+            {{ row.head }}
           </td>
           </tr>
         </tbody>

@@ -10,6 +10,7 @@ import { PatienttableComponent } from './patienttable/patienttable.component';
 import { NursetableComponent } from './nursetable/nursetable.component';
 import { PhysicianlistComponent } from './physicianlist/physicianlist.component';
 import { DepartmentlistComponent } from './departmentlist/departmentlist.component';
+import { DepartmentComponent } from './department/department.component';
 
 const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "Home", component: DashboardComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "Patient", component: PatientComponent },
 { path: "Nurse", component: NurseComponent },
 { path: "Appointment", component: AppointmentComponent },
+{path:"Department",component:DepartmentComponent},
 { path: "AppointmentList", component: AppointmentlistComponent },
 { path: "PatientList", component: PatienttableComponent },
 { path: "NurseList", component: NursetableComponent },

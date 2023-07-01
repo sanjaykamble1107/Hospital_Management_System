@@ -9,9 +9,9 @@ export class DepartmentServiceService {
 
   constructor(private http: HttpClient) { }
 
-  // public save = (data: any) => {
-  //   return this.http.post(`${this.rootUrl}`, data)
-  // }
+  public save = (data: any) => {
+    return this.http.post(`${this.rootUrl}`, data)
+  }
    public  get =() =>{
     return this.http.get(`${this.rootUrl}`)
    }

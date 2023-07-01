@@ -6,6 +6,26 @@
     <h3>List of Patients</h3>
   </div>
 
+  <div class="container mt-4 ">
+    <div class="row">
+      <div class="col">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>--Search patient by--</option>
+            <option value="1">Search by PhysicianID</option>
+            <option value="2">Search Patient InsuranceID by PatientID</option>
+          </select>
+      </div>
+      
+      <div class="col">
+        <div class="input-group">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary">search</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="card-boday">
     <table class="table">
       <thead>
