@@ -14,7 +14,7 @@ import { DepartmentComponent } from './department/department.component';
 import { ProcedureComponent } from './procedure/procedure.component';
 import { ProcedurelistComponent } from './procedurelist/procedurelist.component';
 import { TrainedInComponent } from './trainedin/trained-in.component';
-
+import { UpdatephysicianComponent } from './updatephysician/updatephysician.component';
 const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "Home", component: DashboardComponent },
 { path: "Physician", component: PhysicianComponent },
@@ -30,8 +30,8 @@ const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "PhysicianList",component:PhysicianlistComponent},
 {path:"DepartmentList",component:DepartmentlistComponent},
 {path:"ProcedureList",component:ProcedurelistComponent},
+{ path:"updatephysician/:employeeId",component:UpdatephysicianComponent },
 { path: "**", redirectTo: "Home" }];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

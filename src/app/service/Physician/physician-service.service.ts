@@ -16,4 +16,13 @@ export class PhysicianServiceService {
   public get =() =>{
     return this.http.get(`${this.rootUrl}`)
   } 
+
+  public getCurrentData=(employeeId:any)=>{
+    return this.http.get(`${this.rootUrl}/${employeeId}`)
+  }
+  updatephysicianname(employeeId:any,data:any){
+    return this.http.put(`${this.rootUrl}/update/name/${employeeId}`,data.name)
+  }
+
+  
 }

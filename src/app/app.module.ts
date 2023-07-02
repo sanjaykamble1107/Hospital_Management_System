@@ -19,6 +19,7 @@ import { DepartmentComponent } from './department/department.component';
 import { ProcedureComponent } from './procedure/procedure.component';
 import { ProcedurelistComponent } from './procedurelist/procedurelist.component';
 import { TrainedInComponent } from './trainedin/trained-in.component';
+import { UpdatephysicianComponent } from './updatephysician/updatephysician.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { TrainedInComponent } from './trainedin/trained-in.component';
     DepartmentComponent,
     ProcedureComponent,
     ProcedurelistComponent,
-    TrainedInComponent,],
+    TrainedInComponent,
+    UpdatephysicianComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
