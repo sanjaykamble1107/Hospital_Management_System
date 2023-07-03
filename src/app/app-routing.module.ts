@@ -14,6 +14,7 @@ import { DepartmentComponent } from './department/department.component';
 import { ProcedureComponent } from './procedure/procedure.component';
 import { ProcedurelistComponent } from './procedurelist/procedurelist.component';
 import { TrainedInComponent } from './trainedin/trained-in.component';
+import { AffiliatedwithComponent } from './affiliatedwith/affiliatedwith.component';
 
 const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "Home", component: DashboardComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 {path:"Department",component:DepartmentComponent},
 {path:"Procedure",component:ProcedureComponent},
 {path:"TrainedIn",component:TrainedInComponent},
+{path:"AffiliatedWith",component:AffiliatedwithComponent},
 { path: "AppointmentList", component: AppointmentlistComponent },
 { path: "PatientList", component: PatienttableComponent },
 { path: "NurseList", component: NursetableComponent },

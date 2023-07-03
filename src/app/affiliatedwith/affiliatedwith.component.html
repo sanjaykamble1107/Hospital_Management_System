@@ -1,0 +1,92 @@
+<form [formGroup]="affiliatedWithForm" #affiliatedWithFormData="ngForm">
+  <div class="card custom-card shadow col-md-4 m-2 border-0">
+    <div
+      class="card-header text-center border-0"
+      style="background-color: #f2dcff"
+    >
+      <h3>AffiliatedWith Registration</h3>
+    </div>
+    <div class="card-body border-0 center">
+      <div class="row m-2">
+        <div class="col-md-4">Physician</div>
+        <div class="col-md-8">
+          <select
+            name="physician"
+            class="form-control"
+            style="width: 14rem"
+            required
+            formControlName="physician"
+          >
+            <option>--select--</option>
+            <option
+              *ngFor="let physician of physicianlist"
+              value="{{ physician.employeeId }}"
+            >
+              {{ physician.employeeId }} -
+              {{ physician.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row m-2">
+        <div class="col-md-4">Department</div>
+        <div class="col-md-8">
+          <select
+            name="department"
+            class="form-control"
+            style="width: 14rem"
+            required
+            formControlName="department"
+          >
+            <option>--select--</option>
+            <option
+              *ngFor="let dept of departmentlist"
+              value="{{ dept.departmentId }}"
+            >
+              {{ dept.departmentId }} -
+              {{ dept.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row m-2">
+        <div class="col-md-4">
+          <label class="form-label">PrimaryAffiliation</label>
+        </div>
+        <div class="col-md-8">
+          <select
+            name="registered"
+            class="form-control"
+            formControlName="primaryAffiliation"
+            required
+          >
+            <option>--select--</option>
+
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-center">
+        <div class="row m-2">
+          <button
+            (click)="addAffiliatedWith(affiliatedWithFormData)"
+            class="btn btn-outline-primary"
+          >
+            Add AffiliatedWith
+          </button>
+        </div>
+        <div class="row m-2">
+          <button
+            type="reset"
+            (click)="affiliatedWithFormData.reset()"
+            class="btn btn-outline-danger"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

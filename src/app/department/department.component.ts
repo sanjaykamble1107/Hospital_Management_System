@@ -15,8 +15,8 @@ export class DepartmentComponent {
       departmentForm = new FormGroup({
       departmentId: new FormControl(),
       name: new FormControl(''),
-      head: new FormControl(''),
-      ssn: new FormControl()  
+      head: new FormControl('')
+      
     })
   
     constructor(public departmentService: DepartmentServiceService) { }
