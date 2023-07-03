@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NurseComponent } from './nurse/nurse.component';
@@ -16,6 +16,7 @@ const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "Physician", component: PhysicianComponent },
 { path: "Patient", component: PatientComponent },
 { path: "Nurse", component: NurseComponent },
+{path:"UpdateNurse/:id",component:NurseComponent},
 { path: "Appointment", component: AppointmentComponent },
 { path: "AppointmentList", component: AppointmentlistComponent },
 { path: "PatientList", component: PatienttableComponent },

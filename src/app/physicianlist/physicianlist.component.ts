@@ -8,6 +8,7 @@ import { PhysicianServiceService } from '../service/Physician/physician-service.
   styleUrls: ['./physicianlist.component.css']
 })
 export class PhysicianlistComponent implements OnInit {
+  
   Physician: any=[]
  constructor(public physicianService: PhysicianServiceService){}
   ngOnInit(): void {

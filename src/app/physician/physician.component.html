@@ -30,7 +30,7 @@
             </div>
 
             <div class="d-flex align-items-center justify-content-center">
-                <div class="row m-2 "> <button (click)="addPhysician(physicianFormData)"
+                <div class="row m-2 "> <button (click)="addPhysician(physicianFormData);physicianFormData.reset()"
                         class="btn btn-outline-primary">Add Physician</button>
                 </div>
                 <div class="row m-2 "> <button type="reset" (click)="physicianFormData.reset()" class="btn btn-outline-danger">
