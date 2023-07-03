@@ -4,18 +4,17 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AppointmentServiceService {
-
-  private rootUrl: string = "http://localhost:9090/api/appointment"
-  
+export class AffiliatedwithServiceService {
+  private rootUrl: string = "http://localhost:9090/api/affiliated_with"
 
   constructor(private http: HttpClient) { }
 
   public save = (data: any) => {
-    return this.http.post(`${this.rootUrl}/`, data)
+    return this.http.post(`${this.rootUrl}/post`, data)
   }
-
-  public get =() =>{
+   public  get =() =>{
     return this.http.get(`${this.rootUrl}`)
-  } 
+   }
+
+
 }

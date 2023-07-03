@@ -20,6 +20,7 @@ import { ProcedureComponent } from './procedure/procedure.component';
 import { ProcedurelistComponent } from './procedurelist/procedurelist.component';
 import { TrainedInComponent } from './trainedin/trained-in.component';
 import { UpdatephysicianComponent } from './updatephysician/updatephysician.component';
+import { AffiliatedwithComponent } from './affiliatedwith/affiliatedwith.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,14 +39,17 @@ import { UpdatephysicianComponent } from './updatephysician/updatephysician.comp
     ProcedureComponent,
     ProcedurelistComponent,
     TrainedInComponent,
-    UpdatephysicianComponent],
+    UpdatephysicianComponent,
+    AffiliatedwithComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule, FormsModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -29,7 +29,6 @@ export class AppointmentComponent implements OnInit {
   nurselist: any = []
   physicianlist: any = []
   ngOnInit(): void {
-    this.appointmentservice.get().subscribe((response: any) => this.nurselist = [...response])
 
     this.physicianService.get().subscribe((response: any) => this.physicianlist = [...response])
 
