@@ -9,6 +9,7 @@ import { AppointmentServiceService } from '../service/Appointment/appointment-se
 })
 
 export class AppointmentlistComponent implements OnInit {
+  
 
   appointmentlist: any = []
   constructor(public appointmentservice: AppointmentServiceService) { }

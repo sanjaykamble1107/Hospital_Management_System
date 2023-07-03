@@ -11,16 +11,10 @@ import { Physician } from './physician';
 })
 export class PhysicianlistComponent implements OnInit {
   Physician: Physician[] = [];
-  allPhysician : Physician[] = [];
+  allPhysician: Physician[] = [];
   searchAttribute: string = '';
   searchQuery: string = '';
-  
-  
-
-
-
-
-  constructor(public physicianService: PhysicianServiceService,private router :ActivatedRoute) { }
+  constructor(public physicianService: PhysicianServiceService, private router: ActivatedRoute) { }
   ngOnInit() {
     this.physicianService
       .get()
@@ -28,22 +22,26 @@ export class PhysicianlistComponent implements OnInit {
         this.Physician = response;
         this.allPhysician = response;
       });
-  }
-  search(): void {
-    if (this.searchQuery === '') {
+
+      // this.physicianService
+      //   .get()
+      //   .subscribe((response: any) => (this.Physician = [...response]));
+    }
+    search(): void {
+      if(this.searchQuery === '') {
       this.physicianService.get().subscribe((data) => {
-             this.Physician = this.allPhysician;
-              });
+        this.Physician = this.allPhysician;
+      });
 
     } else {
       this.Physician = this.allPhysician.filter((phy) => {
-        switch(this.searchAttribute) {
+        switch (this.searchAttribute) {
           case 'name':
             return phy.name.toLowerCase().includes(this.searchQuery.toLowerCase());
-            case 'position':
-              return phy.position.toLowerCase().includes(this.searchQuery.toLowerCase());
-              case 'empid':
-                return phy.employeeId === parseInt(this.searchQuery, 10);   
+          case 'position':
+            return phy.position.toLowerCase().includes(this.searchQuery.toLowerCase());
+          case 'empid':
+            return phy.employeeId === parseInt(this.searchQuery, 10);
           default:
             return undefined;
         }

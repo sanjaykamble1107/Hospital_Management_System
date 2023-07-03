@@ -8,54 +8,46 @@
       <div class="row m-2">
         <div class="col-md-4 ">EmployeeID</div>
         <div class="col-md-8  ">
-          <input type="Number" placeholder="Enter EmployeeID" formControlName="employeeId" class="form-control" required />
+          <input type="Number" placeholder="Enter EmployeeID" formControlName="employeeId" class="form-control"
+            required />
         </div>
       </div>
       <div class="row m-2">
         <div class="col-md-4">Name</div>
         <div class="col-md-8">
-          <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" required/>
+          <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" required />
         </div>
       </div>
       <div class="row m-2">
         <div class="col-md-4">Position</div>
         <div class="col-md-8">
-          <input type="text" placeholder="Enter Position" formControlName="position" class="form-control" required/>
+          <input type="text" placeholder="Enter Position" formControlName="position" class="form-control" required />
         </div>
       </div>
       <div class="row m-2">
         <div class="col-md-4">Registered</div>
         <div class="col-md-8">
-          <!-- <input
-              type="Boolean"
-              placeholder="Enter Registered"
-              formControlName="registered"
-              class="form-control"
-            /> -->
-          <!-- <select class="form-select" placeholder="Enter Registered" formControlName="registered" required>
-            <option>--select--</option>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select> -->
-        
-      <select name="registered" class="form-control" style="width:14rem;" required>
-        <option > --select-- </option>
-        <!-- <option *ngFor="let pat of physicianlist"> -->
-          <option value="true">YES</option>
-          <option value="false">NO</option>
-      </select>
+          <select name="registered" class="form-select" formControlName="registered" required>
+            <option value=true>Yes</option>
+            <option value=false>No</option>
+          </select>
         </div>
       </div>
       <div class="row m-2">
         <div class="col-md-4">SSN</div>
         <div class="col-md-8">
-          <input type="Number" placeholder="Enter SSN" formControlName="ssn" class="form-control" required/>
+          <input type="Number" placeholder="Enter SSN" formControlName="ssn" class="form-control" required />
         </div>
       </div>
       <div class="d-flex align-items-center justify-content-center">
         <div class="row m-2">
           <button class="btn btn-outline-primary" (click)="addNurse(nurseFormData)">
             Add Nurse
+          </button>
+        </div>
+        <div class="row m-2">
+          <button type="submit" class="btn btn-outline-dark" (click)="UpdateSsnByEmpid();">
+            Update Nurse
           </button>
         </div>
         <div class="row m-2">

@@ -29,7 +29,7 @@ export class PatientComponent implements OnInit {
   }else{
     alert("All Data is Required")
   }
-}
+};
 
 physicianlist:any=[]
 ngOnInit(): void {   

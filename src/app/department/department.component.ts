@@ -8,10 +8,6 @@ import { DepartmentServiceService } from '../service/Department/department-servi
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent {
-  
-  
-  
- 
       departmentForm = new FormGroup({
       departmentId: new FormControl(),
       name: new FormControl(''),
