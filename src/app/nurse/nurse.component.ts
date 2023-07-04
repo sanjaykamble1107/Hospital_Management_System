@@ -1,6 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NurseServiceService } from '../service/Nurse/nurse-service.service';
 
 @Component({
@@ -18,18 +18,15 @@ export class NurseComponent implements OnInit {
   });
 
   isUpdate: boolean = false;
-  @ViewChild('registerationSelect')
-  myInput!: ElementRef;
 
   isInputDisabledRegistered: boolean = true;
   isInputDisabledSSN: boolean = true;
+  isRegisterEnable: boolean = false;
+  isSSNEnable: boolean = false;
 
-
-  constructor(public nurseService: NurseServiceService, private router: ActivatedRoute) {
+  constructor(public nurseService: NurseServiceService, private router: ActivatedRoute, private route: Router) {
   }
   ngOnInit(): void {
-
-
     const entityId = this.router.snapshot.params['id'];
     if (entityId) {
       this.isUpdate = true;
@@ -51,16 +48,18 @@ export class NurseComponent implements OnInit {
   submit = (data: any) => {
     if (data.valid) {
       if (this.isUpdate) {
-        if (!this.isInputDisabledRegistered) {
+        if (this.isRegisterEnable) {
           this.nurseService.updateRegisteredByEmpId(this.router.snapshot.params['id'], this.nurseForm.value)
             .subscribe((result) => {
-              console.log(result);
+              alert("Registered Updated!")
+              this.route.navigate(["/NurseList"])
             })
         }
-        if (!this.isInputDisabledSSN) {
+        if (this.isSSNEnable) {
           this.nurseService.UpdateSsnByEmpid(this.router.snapshot.params['id'], this.nurseForm.value)
             .subscribe((result: any) => {
-              console.log(result)
+              alert("SSN Updated!")
+              this.route.navigate(["/NurseList"])
             })
         }
       } else {
@@ -74,11 +73,13 @@ export class NurseComponent implements OnInit {
 
   enableRegistered() {
     this.nurseForm.get('registered').enable();
-    this.isInputDisabledRegistered = false
+    this.isInputDisabledSSN = false;
+    this.isRegisterEnable = true;
   }
 
   enableSSN() {
     this.nurseForm.get('ssn').enable();
-    this.isInputDisabledSSN = false
+    this.isInputDisabledRegistered = false;
+    this.isSSNEnable = true;
   }
 }

@@ -1,16 +1,19 @@
 <div class="card custom-card shadow col-md-12 m-2 border-0">
-  <div class="card-header text-center border-0" style="background-color: #f2dcff;">
+  <div
+    class="card-header text-center border-0"
+    style="background-color: #f2dcff"
+  >
     <h2>List of Physicians</h2>
   </div>
 
-  <div class="container mt-4 ">
-
+  <div class="container mt-4">
     <div class="row">
-
       <div class="col">
-
-        <select class="form-select" aria-label="Default select example" [(ngModel)]="searchAttribute">
-
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          [(ngModel)]="searchAttribute"
+        >
           <option selected>--Search physician by--</option>
 
           <option value="name">Search by Name</option>
@@ -18,35 +21,34 @@
           <option value="position">Search by Position</option>
 
           <option value="empid">Search by EmployeeID</option>
-
         </select>
-
       </div>
-
-
-
 
       <div class="col">
-
         <div class="input-group">
+          <input
+            type="search"
+            id="search-query"
+            [(ngModel)]="searchQuery"
+            class="form-control rounded"
+            aria-label="Search"
+            aria-describedby="search"
+          />
 
-          <input type="search" id="search-query" [(ngModel)]="searchQuery" class="form-control rounded"
-            aria-label="Search" aria-describedby="search">
+          <span>
+            &nbsp;&nbsp;&nbsp;
 
-          <span> &nbsp;&nbsp;&nbsp;
-
-            <button type="button" class="btn btn-outline-primary rounded" (click)="search()">Search</button>
-
+            <button
+              type="button"
+              class="btn btn-outline-primary rounded"
+              (click)="search()"
+            >
+              Search
+            </button>
           </span>
-
         </div>
-
       </div>
-
     </div>
-
-
-
 
     <div class="card-body table table-striped container container-sm">
       <table class="table">
@@ -54,41 +56,37 @@
           <tr>
             <th scope="col">EmployeeID</th>
             <th scope="col">Name</th>
-            <th scope="col"></th>
             <th scope="col">Position</th>
-            <th scope="col"></th>
             <th scope="col">SNN</th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let app of  Physician">
+          <tr *ngFor="let app of Physician">
             <td>
-              {{app.employeeId}}
+              {{ app.employeeId }}
             </td>
             <td>
-              {{app.name}}
-            </td>
-            <td>
-              <button type="button" class="btn btn-outline-dark"
-                routerLink="/updatephysician/{{app.employeeId}}">Update</button>
-            </td>
-            <td>
-              {{app.position}}
-            </td>
-            <td>
-              <button type="button" class="btn btn-outline-dark" routerLink="/updatephysician">Update</button>
+              {{ app.name }}
             </td>
 
             <td>
-
-              {{app. ssn}}
+              {{ app.position }}
             </td>
             <td>
-              <button type="button" class="btn btn-outline-dark" routerLink="/updatephysician">Update</button>
+              {{ app.ssn }}
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                routerLink="/updatephysician/{{ app.employeeId }}"
+              >
+                Update
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+</div>

@@ -13,7 +13,7 @@ export class DepartmentServiceService {
     return this.http.post(`${this.rootUrl}`, data)
   }
    public  get =() =>{
-    return this.http.get(`${this.rootUrl}`)
+    return this.http.get(`${this.rootUrl}/`)
    }
 
   
