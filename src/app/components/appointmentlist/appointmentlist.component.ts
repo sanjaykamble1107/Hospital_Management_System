@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { AppointmentServiceService } from '../service/Appointment/appointment-service.service';
+import { AppointmentServiceService } from 'src/app/service/Appointment/appointment-service.service';
 
 @Component({
   selector: 'app-appointmentlist',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProcedureServiceService } from '../service/Procedure/procedure-service.service';
+import { ProcedureServiceService } from 'src/app/service/Procedure/procedure-service.service';
 
 @Component({
   selector: 'app-procedurelist',

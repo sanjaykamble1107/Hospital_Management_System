@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartmentServiceService } from '../service/Department/department-service.service';
+import { DepartmentServiceService } from 'src/app/service/Department/department-service.service';
 
 @Component({
   selector: 'app-departmentlist',

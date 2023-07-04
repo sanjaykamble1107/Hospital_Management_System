@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AffiliatedwithServiceService } from '../service/Affiliatedwith/affiliatedwith-service.service';
-import { DepartmentServiceService } from '../service/Department/department-service.service';
-import { PhysicianServiceService } from '../service/Physician/physician-service.service';
+import { AffiliatedwithServiceService } from 'src/app/service/Affiliatedwith/affiliatedwith-service.service';
+import { DepartmentServiceService } from 'src/app/service/Department/department-service.service';
+import { PhysicianServiceService } from 'src/app/service/Physician/physician-service.service';
+
 
 @Component({
   selector: 'app-affiliatedwith',

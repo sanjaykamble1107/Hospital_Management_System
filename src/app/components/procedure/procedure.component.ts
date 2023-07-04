@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ProcedureServiceService } from '../service/Procedure/procedure-service.service';
+import { ProcedureServiceService } from 'src/app/service/Procedure/procedure-service.service';
 
 @Component({
   selector: 'app-procedure',

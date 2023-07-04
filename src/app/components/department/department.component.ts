@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DepartmentServiceService } from '../service/Department/department-service.service';
+import { DepartmentServiceService } from 'src/app/service/Department/department-service.service';
 
 @Component({
   selector: 'app-department',

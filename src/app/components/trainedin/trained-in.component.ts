@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TrainedinServiceService } from '../service/TrainedIn/trainedin-service.service';
+import { TrainedinServiceService } from 'src/app/service/TrainedIn/trainedin-service.service';
 
 @Component({
   selector: 'app-trained-in',

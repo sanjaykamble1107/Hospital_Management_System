@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PhysicianServiceService } from '../service/Physician/physician-service.service';
+import { PhysicianServiceService } from 'src/app/service/Physician/physician-service.service';
 
 @Component({
   selector: 'app-physician',

@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { NurseServiceService } from '../service/Nurse/nurse-service.service';
+import { NurseServiceService } from 'src/app/service/Nurse/nurse-service.service';
 
 
 @Component({

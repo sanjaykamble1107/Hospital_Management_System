@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { PatientServiceService } from '../service/Patient/patient-service.service';
-import { PhysicianServiceService } from '../service/Physician/physician-service.service';
+import { PatientServiceService } from 'src/app/service/Patient/patient-service.service';
+import { PhysicianServiceService } from 'src/app/service/Physician/physician-service.service';
+
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',

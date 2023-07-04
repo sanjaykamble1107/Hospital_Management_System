@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AppointmentServiceService } from '../service/Appointment/appointment-service.service';
-import { NurseServiceService } from '../service/Nurse/nurse-service.service';
-import { PhysicianServiceService } from '../service/Physician/physician-service.service';
+import { AppointmentServiceService } from 'src/app/service/Appointment/appointment-service.service';
+import { NurseServiceService } from 'src/app/service/Nurse/nurse-service.service';
+import { PhysicianServiceService } from 'src/app/service/Physician/physician-service.service';
+
 
 @Component({
   selector: 'app-appointment',
