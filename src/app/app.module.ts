@@ -11,7 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NurseComponent } from './nurse/nurse.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentlistComponent } from './appointmentlist/appointmentlist.component';
-import { NursetableComponent } from './nursetable/nursetable.component';
+import { NursetableComponent } from './nurselist/nurselist.component';
 import { PatienttableComponent } from './patienttable/patienttable.component';
 import { PhysicianlistComponent } from './physicianlist/physicianlist.component';
 import { DepartmentlistComponent } from './departmentlist/departmentlist.component';

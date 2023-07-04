@@ -22,10 +22,10 @@ export class NurseServiceService {
   }
 
   public updateRegisteredByEmpId(id: any, data: any) {
-    return this.http.put(`${this.rootUrl}/registered/${id}`, data.registered)
+    return this.http.put(`${this.rootUrl}/registered/${id}`, data)
   }
 
-  public UpdateSsnByEmpid(id:any,data:any){
-    return this.http.put(`${this.rootUrl}/ssn/${id}`, data.ssn)
+  public UpdateSsnByEmpid(id: any, data: any) {
+    return this.http.put(`${this.rootUrl}/ssn/${id}`, data)
   }
 }

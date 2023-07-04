@@ -13,16 +13,16 @@ export class PhysicianServiceService {
     return this.http.post(`${this.rootUrl}`, data)
   }
 
-  public get =() =>{
+  public get = () => {
     return this.http.get(`${this.rootUrl}`)
-  } 
+  }
 
-  public getCurrentData=(employeeId:any)=>{
+  public getCurrentData = (employeeId: any) => {
     return this.http.get(`${this.rootUrl}/${employeeId}`)
   }
-  updatephysicianname(employeeId:any,data:any){
-    return this.http.put(`${this.rootUrl}/update/name/${employeeId}`,data.name)
+  updatephysicianname(employeeId: any, data: any) {
+    return this.http.put(`${this.rootUrl}/update/name/${employeeId}`, data.name)
   }
 
-  
+
 }

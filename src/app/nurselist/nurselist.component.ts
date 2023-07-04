@@ -3,9 +3,9 @@ import { NurseServiceService } from '../service/Nurse/nurse-service.service';
 
 
 @Component({
-  selector: 'app-nursetable',
-  templateUrl: './nursetable.component.html',
-  styleUrls: ['./nursetable.component.css']
+  selector: 'app-nurselist',
+  templateUrl: './nurselist.component.html',
+  styleUrls: ['./nurselist.component.css']
 })
 export class NursetableComponent implements OnInit {
 

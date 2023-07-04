@@ -1,12 +1,19 @@
 <div class="card custom-card shadow col-md-12 m-2 border-0">
-  <div class="card-header text-center border-0" style="background-color: #f2dcff">
+  <div
+    class="card-header text-center border-0"
+    style="background-color: #f2dcff"
+  >
     <h3>List of Nurses</h3>
   </div>
 
-  <div class="container mt-4 ">
+  <div class="container mt-4">
     <div class="row">
       <div class="col">
-        <select class="form-select" aria-label="Default select example" (change)="getSelectVal($event)">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          (change)="getSelectVal($event)"
+        >
           <option value="0">--Search Nurse by--</option>
           <option value="1">Search by EmployeeID</option>
           <!-- <option value="2">Search Position by EmployeeID </option>
@@ -15,16 +22,28 @@
       </div>
       <div class="col">
         <div class="input-group">
-          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-            aria-describedby="search-addon" [(ngModel)]="searchVal" />
-            &nbsp;&nbsp;&nbsp;
-          <button type="button" class="btn btn-outline-primary rounded" (click)="search()">search</button>
+          <input
+            type="search"
+            class="form-control rounded"
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="search-addon"
+            [(ngModel)]="searchVal"
+          />
+          &nbsp;&nbsp;&nbsp;
+          <button
+            type="button"
+            class="btn btn-outline-primary rounded"
+            (click)="search()"
+          >
+            search
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="card-boday">
+  <div class="card-boday m-2">
     <table class="table">
       <thead>
         <tr>
@@ -32,7 +51,6 @@
           <th scope="col">Name</th>
           <th scope="col">Position</th>
           <th scope="col">Registered</th>
-          <th scope="col"></th>
           <th scope="col">SSN</th>
           <th scope="col"></th>
         </tr>
@@ -50,13 +68,18 @@
             {{ app.position }}
           </td>
           <td>
-            {{ app.registered }}
+            {{ app.registered ? "Yes" : "No" }}
           </td>
-          <td><a href="/UpdateNurse/{{app.employeeId}}"><button type="button" click="getCurrentdata=()" class="btn btn-outline-dark ">Update</button></a></td>
           <td>
             {{ app.ssn }}
           </td>
-          <td><a href="/UpdateNurse/{{app.employeeId}}"><button type="button" class="btn btn-outline-dark ">Update</button></a></td>
+          <td>
+            <a href="/UpdateNurse/{{ app.employeeId }}"
+              ><button type="button" class="btn btn-outline-dark">
+                Update
+              </button></a
+            >
+          </td>
         </tr>
       </tbody>
     </table>

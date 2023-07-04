@@ -25,7 +25,7 @@
       <div class="row m-2">
         <div class="col-md-4">Phone</div>
         <div class="col-md-8">
-          <input type="Integer" class="form-control" name="phoneNumber" placeholder="Enter Phoneno" required>
+          <input type="Number" class="form-control" name="phoneNumber" formControlName="phone" placeholder="Enter Phoneno" required>
         </div>
       </div>
       <div class="row m-2">
@@ -35,18 +35,12 @@
             class="form-control" required />
         </div>
       </div>
-      <!-- <div class="row m-2">
-        <div class="col-md-4">PCP</div>
-        <div class="col-md-8">
-          <input type="Number" placeholder="Enter PCP" min="0" formControlName="pcp" class="form-control" required />
-        </div>
-      </div> -->
       <div class="row m-2">
         <div class="col-md-4">PCP</div>
         <div class="col-md-8">
           <tr>
             <td>
-              <select name="pcp" class="form-control" style="width: 14rem;" required >
+              <select name="pcp" class="form-control" style="width: 14rem;" required formControlName="pcp" >
                 <option >--select--</option>
                 <option *ngFor="let pcp of physicianlist" value={{pcp.employeeId}}>
                   {{pcp.employeeId}} -
