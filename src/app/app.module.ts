@@ -20,6 +20,9 @@ import { PhysicianComponent } from './components/physician/physician.component';
 import { PhysicianlistComponent } from './components/physicianlist/physicianlist.component';
 import { ProcedureComponent } from './components/procedure/procedure.component';
 import { ProcedurelistComponent } from './components/procedurelist/procedurelist.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeaderComponent } from './components/header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +42,10 @@ import { ProcedurelistComponent } from './components/procedurelist/procedurelist
     ProcedurelistComponent,
     TrainedInComponent,
     AffiliatedwithComponent,
+    HeaderComponent,
   ],
   imports: [
+    FontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

@@ -1,0 +1,16 @@
+nav{
+    height: 100%;
+}
+
+.side-nav-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.side-nav-button:hover{
+   background-color: aliceblue;
+   border-radius: 10%;
+}

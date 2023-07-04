@@ -1,5 +1,9 @@
-<app-sidebar></app-sidebar>
-<router-outlet></router-outlet>
+<app-header (sideNavToggled)="sideNavStatus = $event;"></app-header>
+<main>
+  <app-sidebar [sideNavStatus]d="sideNavStatus"></app-sidebar>
+  <div class="display-area">
+    <router-outlet></router-outlet>
+  </div>
+</main>
 <!-- <app-nursetable></app-nursetable> -->
 <!-- <app-physicianlist></app-physicianlist> -->
-
