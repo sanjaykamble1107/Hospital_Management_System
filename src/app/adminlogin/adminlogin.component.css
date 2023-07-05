@@ -1,0 +1,18 @@
+.custom-card{
+    width:  22rem; /* Adjust the width as desired */
+    height: 22rem; /* Adjust the height as desired */
+    border: none;
+    position: relative;
+}
+
+.logo-img{
+    height: 25% !important;
+    width: 10%;
+    position: relative;
+    margin-top: 4rem;
+}
+
+
+
+
+

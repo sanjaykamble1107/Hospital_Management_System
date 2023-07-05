@@ -22,6 +22,7 @@ import { ProcedureComponent } from './components/procedure/procedure.component';
 import { ProcedurelistComponent } from './components/procedurelist/procedurelist.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './components/header/header.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { HeaderComponent } from './components/header/header.component';
     TrainedInComponent,
     AffiliatedwithComponent,
     HeaderComponent,
+    AdminloginComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -55,4 +57,4 @@ import { HeaderComponent } from './components/header/header.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
