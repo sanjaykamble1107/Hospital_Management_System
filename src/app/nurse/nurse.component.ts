@@ -64,6 +64,7 @@ export class NurseComponent implements OnInit {
         }
       } else {
         this.nurseService.save(data.value).subscribe((response: any) => alert(response.response));
+        this.route.navigate(["/NurseList"])
       }
     }
     else {

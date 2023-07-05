@@ -12,8 +12,18 @@ export class PatientServiceService {
   public save = (data: any) => {
     return this.http.post(`${this.rootUrl}`, data)
   }
-  public  get =() =>{
+  public get = () => {
     return this.http.get(`${this.rootUrl}`)
-   }
-   
+  }
+
+  public getById = (ssn: any) => {
+    return this.http.get(`${this.rootUrl}/SSN/${ssn}`)
+  }
+
+  public updateAddress = (ssn: any, data: any) => {
+    return this.http.put(`${this.rootUrl}/address/${ssn}`, data)
+  }
+  public updatePhone = (ssn: any, data: any) => {
+    return this.http.put(`${this.rootUrl}/phone/${ssn}`, data)
+  }
 }

@@ -70,6 +70,7 @@ export class PhysicianComponent {
         }
       } else {
         this.physicianService.save(data.value).subscribe((response: any) => alert(response.response));
+        this.route.navigate(["/PhysicianList"])
       }
     } else {
       alert("All Data is Required")

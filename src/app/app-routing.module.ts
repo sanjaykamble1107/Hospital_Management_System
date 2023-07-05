@@ -33,6 +33,7 @@ const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "DepartmentList", component: DepartmentlistComponent },
 { path: "ProcedureList", component: ProcedurelistComponent },
 { path: "updatephysician/:employeeId", component: PhysicianComponent },
+{ path: "updatePatient/:ssn", component: PatientComponent },
 { path: "**", redirectTo: "Home" }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
