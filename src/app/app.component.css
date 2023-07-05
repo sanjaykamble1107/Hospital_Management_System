@@ -16,13 +16,26 @@ main {
 app-sidebar {
   position: absolute;
   left: 0rem;
-  width: 250px;
+  width: 180px;
   height: calc(100vh - 4rem);
-  background-color: bisque;
+  background-color: #e49fed;
+  overflow-x: hidden;
+  white-space: nowrap;
+  transition: width 250ms ease-in;
 }
 
 .display-area {
   position: absolute;
-  left: 250px;
-  width: calc(100% - 250px);
+  left: 180px;
+  width: calc(100% - 180px);
+  transition: width 250ms ease-in, left 250ms ease-in;
+}
+
+.app-side-nav-open {
+  width: 60px;
+}
+
+.display-area-shrink {
+  width: calc(100% - 60px);
+  left: 60px;
 }
