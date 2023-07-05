@@ -1,0 +1,41 @@
+app-header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  height: 3rem;
+  z-index: 2;
+}
+
+main {
+  position: absolute;
+  width: 100%;
+  top: 4rem;
+  z-index: 1;
+}
+
+app-sidebar {
+  position: absolute;
+  left: 0rem;
+  width: 180px;
+  height: calc(100vh - 4rem);
+  background-color: #e49fed;
+  overflow-x: hidden;
+  white-space: nowrap;
+  transition: width 250ms ease-in;
+}
+
+.display-area {
+  position: absolute;
+  left: 180px;
+  width: calc(100% - 180px);
+  transition: width 250ms ease-in, left 250ms ease-in;
+}
+
+.app-side-nav-open {
+  width: 60px;
+}
+
+.display-area-shrink {
+  width: calc(100% - 60px);
+  left: 60px;
+}

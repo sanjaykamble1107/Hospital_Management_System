@@ -1,20 +1,20 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NurseComponent } from './nurse/nurse.component';
-import { PatientComponent } from './patient/patient.component';
-import { PhysicianComponent } from './physician/physician.component';
-import { AppointmentComponent } from './appointment/appointment.component';
-import { AppointmentlistComponent } from './appointmentlist/appointmentlist.component';
-import { PatienttableComponent } from './patienttable/patienttable.component';
-import { NursetableComponent } from './nurselist/nurselist.component';
-import { PhysicianlistComponent } from './physicianlist/physicianlist.component';
-import { DepartmentlistComponent } from './departmentlist/departmentlist.component';
-import { DepartmentComponent } from './department/department.component';
-import { ProcedureComponent } from './procedure/procedure.component';
-import { ProcedurelistComponent } from './procedurelist/procedurelist.component';
-import { TrainedInComponent } from './trainedin/trained-in.component';
-import { AffiliatedwithComponent } from './affiliatedwith/affiliatedwith.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AffiliatedwithComponent } from './components/affiliatedwith/affiliatedwith.component';
+import { AppointmentComponent } from './components/appointment/appointment.component';
+import { AppointmentlistComponent } from './components/appointmentlist/appointmentlist.component';
+import { DepartmentComponent } from './components/department/department.component';
+import { DepartmentlistComponent } from './components/departmentlist/departmentlist.component';
+import { NurseComponent } from './components/nurse/nurse.component';
+import { NursetableComponent } from './components/nurselist/nurselist.component';
+import { PatientComponent } from './components/patient/patient.component';
+import { PatienttableComponent } from './components/patienttable/patienttable.component';
+import { TrainedInComponent } from './components/trainedin/trained-in.component';
+import { PhysicianComponent } from './components/physician/physician.component';
+import { PhysicianlistComponent } from './components/physicianlist/physicianlist.component';
+import { ProcedureComponent } from './components/procedure/procedure.component';
+import { ProcedurelistComponent } from './components/procedurelist/procedurelist.component';
 const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
 { path: "Home", component: DashboardComponent },
 { path: "Physician", component: PhysicianComponent },

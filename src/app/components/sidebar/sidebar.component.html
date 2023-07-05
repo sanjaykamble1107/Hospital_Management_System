@@ -1,0 +1,98 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light navbar-color">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">HMS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Physician">Physician</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Nurse">Nurse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Patient">Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Appointment">Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Department">Department</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Procedure">Procedure</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="TrainedIn">TrainedIn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="AffiliatedWith">AffiliatedWith</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+
+<div class="side-nav-content">
+  <ul class="nav-list" [ngClass]="{ 'nav-list-open': sideNavStatus }">
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="home"></fa-icon>
+      </i>
+      <a class="nav-link active" aria-current="page" href="Home">Home</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="doctor"></fa-icon>
+      </i>
+      <a class="nav-link" href="Physician">Physician</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="nurse"></fa-icon>
+      </i>
+      <a class="nav-link" href="Nurse">Nurse</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="bed"></fa-icon>
+      </i>
+      <a class="nav-link" href="Patient">Patient</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="appointment"></fa-icon>
+      </i>
+      <a class="nav-link" href="Appointment">Appointment</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="department"></fa-icon>
+      </i>
+      <a class="nav-link" href="Department">Department</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="procedure"></fa-icon>
+      </i>
+      <a class="nav-link" href="Procedure">Procedure</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="trainedIn"></fa-icon>
+      </i>
+      <a class="nav-link" href="TrainedIn">TrainedIn</a>
+    </li>
+    <li class="nav-list-item">
+      <i>
+        <fa-icon [icon]="affiliated"></fa-icon>
+      </i> 
+      <a class="nav-link" href="AffiliatedWith">AffiliatedWith</a>
+    </li>
+  </ul>
+</div>
