@@ -1,6 +1,16 @@
-<nav class="navbar navbar-expand  px-2 custom-nav">
+<nav class="navbar navbar-expand px-2 custom-nav">
+  <div class="container-fluid">
     <div class="side-nav-button p-2 me-2 text-dark" (click)="SideNavToggle()">
       <fa-icon [icon]="fabars"></fa-icon>
+      <a href="Home" class="navbar-brand px-4">HMS</a>
     </div>
-    <a href="Home" class="navbar-brand px-4">HMS</a>
-  </nav>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <div class="btn-nav">
+          <a class="btn btn-outline-dark btn-small navbar-btn" href="/login"
+            >Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

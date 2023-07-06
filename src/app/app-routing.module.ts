@@ -15,7 +15,9 @@ import { PhysicianComponent } from './components/physician/physician.component';
 import { PhysicianlistComponent } from './components/physicianlist/physicianlist.component';
 import { ProcedureComponent } from './components/procedure/procedure.component';
 import { ProcedurelistComponent } from './components/procedurelist/procedurelist.component';
-const routes: Routes = [{ path: "", redirectTo: "Home", pathMatch: "full" },
+import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
+const routes: Routes = [{ path: "", redirectTo: "login", pathMatch: "full" },
+{ path: "login", component: AdminloginComponent },
 { path: "Home", component: DashboardComponent },
 { path: "Physician", component: PhysicianComponent },
 { path: "Patient", component: PatientComponent },
