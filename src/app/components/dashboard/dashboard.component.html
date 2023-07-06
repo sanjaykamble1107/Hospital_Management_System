@@ -1,14 +1,19 @@
-<div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 2px; margin-left: 2px;">
+<div
+  class="row row-cols-1 row-cols-md-4 g-4"
+  style="margin-top: 2px; margin-left: 2px"
+>
   <div class="col">
     <div class="card h-100">
       <div class="card-body">
         <h5 class="card-title">Nurse List</h5>
-        <p class="card-text  text-muted">
-          Cilck below to get list of nurses 
-        </p>
+        <p class="card-text text-muted">Cilck below to get list of nurses</p>
       </div>
       <div class="card-footer">
-        <a href="NurseList" class="btn btn-outline-dark d-flex justify-content-md-center">Nurse List</a>
+        <a
+          [routerLink]="['/NurseList']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Nurse List</a
+        >
       </div>
     </div>
   </div>
@@ -16,22 +21,30 @@
     <div class="card h-100">
       <div class="card-body">
         <h5 class="card-title">Physician List</h5>
-        <p class="card-text text-muted">Cilck below to get list of physician </p>
+        <p class="card-text text-muted">Cilck below to get list of physician</p>
       </div>
       <div class="card-footer">
-      <a href="PhysicianList" class="btn btn-outline-dark d-flex justify-content-md-center">Physician List</a>
+        <a
+          [routerLink]="['/PhysicianList']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Physician List</a
+        >
       </div>
     </div>
   </div>
-  
+
   <div class="col">
     <div class="card h-100">
       <div class="card-body">
         <h5 class="card-title">Patient List</h5>
-        <p class="card-text text-muted">Cilck below to get list of patient </p>
+        <p class="card-text text-muted">Cilck below to get list of patient</p>
       </div>
       <div class="card-footer">
-      <a href="PatientList" class="btn btn-outline-dark d-flex justify-content-md-center">Patients List</a>
+        <a
+          [routerLink]="['/PatientList']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Patients List</a
+        >
       </div>
     </div>
   </div>
@@ -41,11 +54,15 @@
       <div class="card-body">
         <h5 class="card-title">Appointment List</h5>
         <p class="card-text text-muted">
-          Cilck below to get  list of appointments
+          Cilck below to get list of appointments
         </p>
       </div>
       <div class="card-footer">
-        <a href="AppointmentList" class="btn btn-outline-dark d-flex justify-content-md-center">Appointment List</a>
+        <a
+          [routerLink]="['/AppointmentList']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Appointment List</a
+        >
       </div>
     </div>
   </div>
@@ -53,10 +70,16 @@
     <div class="card h-100">
       <div class="card-body">
         <h5 class="card-title">Department List</h5>
-        <p class="card-text text-muted">Cilck below to get list of departments </p>
+        <p class="card-text text-muted">
+          Cilck below to get list of departments
+        </p>
       </div>
       <div class="card-footer">
-      <a href="DepartmentList" class="btn btn-outline-dark d-flex justify-content-md-center">Department List</a>
+        <a
+          [routerLink]="['/DepartmentList']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Department List</a
+        >
       </div>
     </div>
   </div>
@@ -65,11 +88,15 @@
       <div class="card-body">
         <h5 class="card-title">Procedure List</h5>
         <p class="card-text text-muted">
-          Cilck below to get  list of procedures
+          Cilck below to get list of procedures
         </p>
       </div>
       <div class="card-footer">
-        <a href="ProcedureList" class="btn btn-outline-dark d-flex justify-content-md-center">Procedure List</a>
+        <a
+          [routerLink]="['/ProcedureList']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Procedure List</a
+        >
       </div>
     </div>
   </div>
