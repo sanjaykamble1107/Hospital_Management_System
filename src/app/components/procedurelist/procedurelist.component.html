@@ -1,54 +1,79 @@
-<div class="card custom-card shadow col-md-12 m-2 border-0">
-    <div class="card-header text-center border-0" style="background-color: #f2dcff;">
-      <h2>List of Procedures</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Add Procedure</h5>
+      </div>
+      <div class="card-footer">
+        <a
+          [routerLink]="['/Procedure']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Add Procedure</a
+        >
+      </div>
     </div>
+  </div>
 
-    <div class="container mt-4 ">
+  <div class="col-md-12 my-2">
+    <div class="card custom-card shadow border-0">
+      <div
+        class="card-header text-center border-0"
+        style="background-color: #f2dcff"
+      >
+        <h2>List of Procedures</h2>
+      </div>
+
+      <div class="container mt-4">
         <div class="row">
           <div class="col">
             <select class="form-select" aria-label="Default select example">
-                <option selected>--Search procedure by--</option>
-                <option value="1">Search the cost of procedure by Id</option>
-                <option value="2">Search the cost of procedure by Name</option>
-                
-              </select>
+              <option selected>--Search procedure by--</option>
+              <option value="1">Search the cost of procedure by Id</option>
+              <option value="2">Search the cost of procedure by Name</option>
+            </select>
           </div>
-          
+
           <div class="col">
             <div class="input-group">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">search</button>
-              </div>
+              <input
+                type="search"
+                class="form-control rounded"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+              <button type="button" class="btn btn-outline-primary">
+                search
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Code</th>
-            <th scope="col">Name</th>
-            <th scope="col">Cost</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let app of  Procedure">
-            <td>
-              {{app.code}}
-            </td>
-            <td>
-              {{app.name}}
-            </td>
-            <td>
-              {{app.cost}}
-            </td>
-            
-          </tr>
-        </tbody>
-      </table>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">Name</th>
+              <th scope="col">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of Procedure">
+              <td>
+                {{ app.code }}
+              </td>
+              <td>
+                {{ app.name }}
+              </td>
+              <td>
+                {{ app.cost }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  
-
+</div>

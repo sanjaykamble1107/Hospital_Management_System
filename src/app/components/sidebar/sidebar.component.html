@@ -1,60 +1,60 @@
 <div class="side-nav-content">
   <ul class="nav-list" [ngClass]="{ 'nav-list-open': sideNavStatus }">
     <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="home"></fa-icon>
-      </i>
-      <a class="nav-link active" aria-current="page" [routerLink]="['/Home']"
-        >Home</a
+      <a class="nav-link active" aria-current="page" [routerLink]="['/Home']">
+        <i>
+          <fa-icon [icon]="home"></fa-icon>
+        </i>
+        Home</a
       >
     </li>
     <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="doctor"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/Physician']">Physician</a>
+      <a class="nav-link" [routerLink]="['/PhysicianList']">
+        <i>
+          <fa-icon [icon]="doctor"></fa-icon>
+        </i>
+        Physician</a
+      >
     </li>
     <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="nurse"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/Nurse']">Nurse</a>
+      <a class="nav-link" [routerLink]="['/NurseList']">
+        <i>
+          <fa-icon [icon]="nurse"></fa-icon>
+        </i>
+        Nurse</a
+      >
     </li>
     <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="bed"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/Patient']">Patient</a>
+      <a class="nav-link" [routerLink]="['/PatientList']">
+        <i>
+          <fa-icon [icon]="bed"></fa-icon>
+        </i>
+        Patient</a
+      >
     </li>
     <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="appointment"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/Appointment']">Appointment</a>
+      <a class="nav-link" [routerLink]="['/AppointmentList']">
+        <i>
+          <fa-icon [icon]="appointment"></fa-icon>
+        </i>
+        Appointment</a
+      >
     </li>
     <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="department"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/Department']">Department</a>
+      <a class="nav-link" [routerLink]="['/DepartmentList']">
+        <i>
+          <fa-icon [icon]="department"></fa-icon>
+        </i>
+        Department</a
+      >
     </li>
     <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="procedure"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/Procedure']">Procedure</a>
-    </li>
-    <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="trainedIn"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/TrainedIn']">TrainedIn</a>
-    </li>
-    <li class="nav-list-item">
-      <i>
-        <fa-icon [icon]="affiliated"></fa-icon>
-      </i>
-      <a class="nav-link" [routerLink]="['/AffiliatedWith']">AffiliatedWith</a>
+      <a [routerLink]="['/ProcedureList']" class="nav-link">
+        <i>
+          <fa-icon [icon]="procedure"></fa-icon>
+        </i>
+        Procedure
+      </a>
     </li>
   </ul>
 </div>

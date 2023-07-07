@@ -1,53 +1,82 @@
-<div class="card custom-card shadow col-md-12 m-2 border-0">
-    <div class="card-header text-center border-0" style="background-color: #f2dcff;">
-      <h2>List of Departments</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Add Department</h5>
+      </div>
+      <div class="card-footer">
+        <a
+          [routerLink]="['/Department']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Add Department</a
+        >
+      </div>
     </div>
-    <div class="container mt-4 ">
-      <div class="row">
-        <div class="col">
-          <select class="form-select" aria-label="Default select example">
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="card custom-card shadow border-0">
+      <div
+        class="card-header text-center border-0"
+        style="background-color: #f2dcff"
+      >
+        <h2>List of Departments</h2>
+      </div>
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col">
+            <select class="form-select" aria-label="Default select example">
               <option selected>--Search department by--</option>
               <option value="1">Search by DepartmentId</option>
               <option value="2">Search Head by DepartmentId</option>
               <option value="3">Search by HeadId</option>
-              <option value="4">Search physician is head of any department or not by PhysicianId</option>
+              <option value="4">
+                Search physician is head of any department or not by PhysicianId
+              </option>
             </select>
-        </div>
-        
-        <div class="col">
-          <div class="input-group">
-              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-              <button type="button" class="btn btn-outline-primary">search</button>
+          </div>
+
+          <div class="col">
+            <div class="input-group">
+              <input
+                type="search"
+                class="form-control rounded"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+              <button type="button" class="btn btn-outline-primary">
+                search
+              </button>
             </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">DepartmentID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Head</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of departmentlist">
-          <td>
-            {{ row.departmentId }}
-          </td>
-          <td>
-            {{ row.name}}
-          </td>
-          <td>
-            {{ row.head }}
-          </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">DepartmentID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Head</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of departmentlist">
+              <td>
+                {{ row.departmentId }}
+              </td>
+              <td>
+                {{ row.name }}
+              </td>
+              <td>
+                {{ row.head }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  
+</div>

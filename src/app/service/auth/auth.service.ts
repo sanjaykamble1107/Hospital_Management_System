@@ -7,10 +7,16 @@ import { Subject } from 'rxjs';
 export class AuthService {
   isLoggedIn = new Subject<boolean>();
   log: boolean = false;
+  http: any;
   constructor() { }
+
+  private rootUrl: string = "http://localhost:9090/api/login"
+
 
   onLogin(username: string, password: string): boolean {
     if (username == "admin" && password == "admin") {
+      const body = { username, password }
+
       this.isLoggedIn.next(true);
       this.log = true;
       return true;
@@ -20,6 +26,7 @@ export class AuthService {
 
   onLogout() {
     this.isLoggedIn.next(false);
+    this.log = false;
   }
 
   loggedIn = (): boolean => {

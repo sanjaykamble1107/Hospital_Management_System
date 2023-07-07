@@ -14,7 +14,7 @@ main {
 }
 
 app-sidebar {
-  position: absolute;
+  position: fixed;
   left: 0rem;
   width: 180px;
   height: calc(100vh - 4rem);

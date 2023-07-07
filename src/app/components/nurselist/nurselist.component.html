@@ -1,87 +1,106 @@
-<div class="card custom-card shadow col-md-12 m-2 border-0">
-  <div
-    class="card-header text-center border-0"
-    style="background-color: #f2dcff"
-  >
-    <h3>List of Nurses</h3>
-  </div>
-
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col">
-        <select
-          class="form-select"
-          aria-label="Default select example"
-          (change)="getSelectVal($event)"
-        >
-          <option value="0">--Search Nurse by--</option>
-          <option value="1">Search by EmployeeID</option>
-          <!-- <option value="2">Search Position by EmployeeID </option>
-          <option value="3">Search by EmployeeID If Nurse is Registered or Not</option> -->
-        </select>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Add Nurse</h5>
       </div>
-      <div class="col">
-        <div class="input-group">
-          <input
-            type="search"
-            class="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-            [(ngModel)]="searchVal"
-          />
-          &nbsp;&nbsp;&nbsp;
-          <button
-            type="button"
-            class="btn btn-outline-primary rounded"
-            (click)="search()"
-          >
-            search
-          </button>
-        </div>
+      <div class="card-footer">
+        <a
+          [routerLink]="['/Nurse']"
+          class="btn btn-outline-dark d-flex justify-content-md-center"
+          >Add Nurse</a
+        >
       </div>
     </div>
   </div>
 
-  <div class="card-boday m-2">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">EmployeeID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Position</th>
-          <th scope="col">Registered</th>
-          <th scope="col">SSN</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
+  <div class="col-md-12 my-2">
+    <div class="card custom-card shadow border-0">
+      <div
+        class="card-header text-center border-0"
+        style="background-color: #f2dcff"
+      >
+        <h3>List of Nurses</h3>
+      </div>
 
-      <tbody>
-        <tr *ngFor="let app of nurselist">
-          <td>
-            {{ app.employeeId }}
-          </td>
-          <td>
-            {{ app.name }}
-          </td>
-          <td>
-            {{ app.position }}
-          </td>
-          <td>
-            {{ app.registered ? "Yes" : "No" }}
-          </td>
-          <td>
-            {{ app.ssn }}
-          </td>
-          <td>
-            <a href="/UpdateNurse/{{ app.employeeId }}"
-              ><button type="button" class="btn btn-outline-dark">
-                Update
-              </button></a
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              (change)="getSelectVal($event)"
             >
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <option value="0">--Search Nurse by--</option>
+              <option value="1">Search by EmployeeID</option>
+              <!-- <option value="2">Search Position by EmployeeID </option>
+          <option value="3">Search by EmployeeID If Nurse is Registered or Not</option> -->
+            </select>
+          </div>
+          <div class="col">
+            <div class="input-group">
+              <input
+                type="search"
+                class="form-control rounded"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
+                [(ngModel)]="searchVal"
+              />
+              &nbsp;&nbsp;&nbsp;
+              <button
+                type="button"
+                class="btn btn-outline-primary rounded"
+                (click)="search()"
+              >
+                search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-boday m-2">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">EmployeeID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Position</th>
+              <th scope="col">Registered</th>
+              <th scope="col">SSN</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let app of nurselist">
+              <td>
+                {{ app.employeeId }}
+              </td>
+              <td>
+                {{ app.name }}
+              </td>
+              <td>
+                {{ app.position }}
+              </td>
+              <td>
+                {{ app.registered ? "Yes" : "No" }}
+              </td>
+              <td>
+                {{ app.ssn }}
+              </td>
+              <td>
+                <a routerLink="/UpdateNurse/{{ app.employeeId }}"
+                  ><button type="button" class="btn btn-outline-dark">
+                    Update
+                  </button></a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

@@ -15,6 +15,4 @@ export class AffiliatedwithServiceService {
    public  get =() =>{
     return this.http.get(`${this.rootUrl}`)
    }
-
-
 }

@@ -1,19 +1,26 @@
 <nav class="navbar navbar-expand px-2 custom-nav">
   <a class="navbar-brand mx-4">HMS</a>
   <div class="container-fluid">
-    <div class="side-nav-button p-2 mx-4 text-dark" >
-      <fa-icon [icon]="fabars" (click)="SideNavToggle()"></fa-icon>&nbsp;
+    <div class="side-nav-button p-2 mx-4 text-dark" (click)="SideNavToggle()">
+      <fa-icon [icon]="fabars"></fa-icon>&nbsp;
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <div class="btn-nav">
-          <a
-            class="btn btn-outline-dark btn-small navbar-btn"
-            href="login"
-            >Logout</a
-          >
-        </div>
-      </li>
-    </ul>
+    <div class="dropdown ms-3">
+      <button
+        class="btn btn-bd-light dropdown-toggle"
+        id="bd-versions"
+        data-bs-toggle="dropdown"
+        aria-expanded="true"
+        data-bs-display="static"
+      >
+        <span class="d-none d-lg-inline"> {{ username }}</span>
+      </button>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="bd-versions"
+        data-bs-popper="static"
+      >
+        <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
   </div>
 </nav>

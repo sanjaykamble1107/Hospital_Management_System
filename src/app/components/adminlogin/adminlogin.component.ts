@@ -22,6 +22,7 @@ export class AdminloginComponent {
       this.route.navigate(["Home"])
       localStorage.setItem("username", this.username);
       localStorage.setItem("password", this.password);
+      localStorage.setItem("isLoggedIn", "true");
     }
   }
 }
