@@ -42,7 +42,7 @@
                 aria-label="Search"
                 aria-describedby="search-addon"
               />
-              <button type="button" class="btn btn-outline-primary">
+              <button type="button" class="btn btn-outline-dark">
                 search
               </button>
             </div>
@@ -57,6 +57,7 @@
               <th scope="col">Code</th>
               <th scope="col">Name</th>
               <th scope="col">Cost</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +70,15 @@
               </td>
               <td>
                 {{ app.cost }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-dark"
+                  routerLink="/updateProcedure/{{app.code }}"
+                >
+                  Update
+                </button>
               </td>
             </tr>
           </tbody>

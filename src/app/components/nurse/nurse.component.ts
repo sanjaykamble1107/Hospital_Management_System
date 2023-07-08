@@ -49,6 +49,7 @@ export class NurseComponent implements OnInit {
     if (data.valid) {
       if (this.isUpdate) {
         if (this.isRegisterEnable) {
+          this.enableAll();
           this.nurseService.updateRegisteredByEmpId(this.router.snapshot.params['id'], this.nurseForm.value)
             .subscribe((result) => {
               alert("Registered Updated!")
@@ -56,6 +57,7 @@ export class NurseComponent implements OnInit {
             })
         }
         if (this.isSSNEnable) {
+          this.enableAll();
           this.nurseService.UpdateSsnByEmpid(this.router.snapshot.params['id'], this.nurseForm.value)
             .subscribe((result: any) => {
               alert("SSN Updated!")
@@ -82,5 +84,14 @@ export class NurseComponent implements OnInit {
     this.nurseForm.get('ssn').enable();
     this.isInputDisabledRegistered = false;
     this.isSSNEnable = true;
+  }
+
+
+  enableAll(){
+    this.nurseForm.get('ssn').enable();
+    this.nurseForm.get('employeeId').enable();
+    this.nurseForm.get('name').enable();
+    this.nurseForm.get('registered').enable();
+    this.nurseForm.get('position').enable();
   }
 }

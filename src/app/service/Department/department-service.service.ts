@@ -16,5 +16,16 @@ export class DepartmentServiceService {
     return this.http.get(`${this.rootUrl}/`)
   }
 
+  public getById = (deptId: any) => {
+    return this.http.get(`${this.rootUrl}/${deptId}`)
+  }
+  
+  public updateHead(deptId: any, data: any) {
+    return this.http.put(`${this.rootUrl}/update/headid/${deptId}`, data)
+  }
+
+  public updateDepartmentName(deptId: any, data: any) {
+    return this.http.put(`${this.rootUrl}/update/deptname/${deptId}`, data)
+  }
 
 }

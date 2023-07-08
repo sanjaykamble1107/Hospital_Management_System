@@ -48,6 +48,7 @@ export class PhysicianComponent {
     if (data.valid) {
       if (this.isUpdate) {
         if (this.isNameEnable) {
+          this.enableAll();
           this.physicianService.updatePhysicianName(this.router.snapshot.params['employeeId'], data.value)
             .subscribe((result: any) => {
               alert("Name Added Successfully!")
@@ -55,6 +56,7 @@ export class PhysicianComponent {
             });
         }
         if (this.isPostionEnable) {
+          this.enableAll();
           this.physicianService.updatePhysicianPosition(this.router.snapshot.params['employeeId'], data.value)
             .subscribe((result: any) => {
               alert("Position Added Successfully!")
@@ -62,6 +64,7 @@ export class PhysicianComponent {
             });
         }
         if (this.isSSNEnable) {
+          this.enableAll();
           this.physicianService.updatePhysicianSSN(this.router.snapshot.params['employeeId'], data.value)
             .subscribe((result: any) => {
               alert("SSN Added Successfully!")
@@ -94,5 +97,12 @@ export class PhysicianComponent {
     this.isInputDisabledPosition = false
     this.isInputDisabledName = false
     this.isSSNEnable = true
+  }
+
+  enableAll(){
+    this.physicianForm.get('ssn').enable();
+    this.physicianForm.get('position').enable();
+    this.physicianForm.get('name').enable();
+    this.physicianForm.get('employeeId').enable();
   }
 }

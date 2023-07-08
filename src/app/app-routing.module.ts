@@ -37,6 +37,8 @@ const routes: Routes = [{ path: "", redirectTo: "login", pathMatch: "full" },
 { path: "ProcedureList", component: ProcedurelistComponent, canActivate: [AuthGuard] },
 { path: "updatephysician/:employeeId", component: PhysicianComponent, canActivate: [AuthGuard] },
 { path: "updatePatient/:ssn", component: PatientComponent, canActivate: [AuthGuard] },
+{ path: "updateDepartment/:deptId", component: DepartmentComponent, canActivate: [AuthGuard] },
+{ path: "updateProcedure/:code", component: ProcedureComponent, canActivate: [AuthGuard] },
 { path: "**", redirectTo: "Home" }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

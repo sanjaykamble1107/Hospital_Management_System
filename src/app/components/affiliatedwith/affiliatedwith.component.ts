@@ -14,7 +14,7 @@ export class AffiliatedwithComponent {
   affiliatedWithForm = new FormGroup({
     physician: new FormControl(),
     department: new FormControl(),
-    primaryAffiliation: new FormControl(),
+    darkAffiliation: new FormControl(),
   });
 
   constructor(

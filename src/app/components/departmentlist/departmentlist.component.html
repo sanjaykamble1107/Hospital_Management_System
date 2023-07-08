@@ -45,7 +45,7 @@
                 aria-label="Search"
                 aria-describedby="search-addon"
               />
-              <button type="button" class="btn btn-outline-primary">
+              <button type="button" class="btn btn-outline-dark">
                 search
               </button>
             </div>
@@ -60,6 +60,7 @@
               <th scope="col">DepartmentID</th>
               <th scope="col">Name</th>
               <th scope="col">Head</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -72,6 +73,15 @@
               </td>
               <td>
                 {{ row.head }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-dark"
+                  routerLink="/updateDepartment/{{ row.departmentId }}"
+                >
+                  Update
+                </button>
               </td>
             </tr>
           </tbody>

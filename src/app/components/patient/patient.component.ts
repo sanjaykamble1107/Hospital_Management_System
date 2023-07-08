@@ -32,7 +32,6 @@ export class PatientComponent implements OnInit {
   ngOnInit(): void {
     this.physicianService.get().subscribe((response: any) => this.physicianlist = [...response])
 
-
     if (this.entityId) {
       this.isUpdate = true;
       this.patientService.getById(this.entityId).subscribe((response: any) => this.patientForm = new FormGroup({
@@ -52,6 +51,7 @@ export class PatientComponent implements OnInit {
     if (data.valid) {
       if (this.isUpdate) {
         if (this.isAddressEnable) {
+          this.enableAll();
           this.patientService.updateAddress(this.entityId, data.value).subscribe((result) => {
             alert("Address Updated!")
             this.route.navigate(["/PatientList"])
@@ -59,6 +59,7 @@ export class PatientComponent implements OnInit {
         }
 
         if (this.isPhoneEnable) {
+          this.enableAll();
           this.patientService.updatePhone(this.entityId, data.value).subscribe((result) => {
             alert("Phone Number Updated!")
             this.route.navigate(["/PatientList"])
@@ -87,5 +88,15 @@ export class PatientComponent implements OnInit {
     this.patientForm.get('phone').enable();
     this.isInputDisabledAddress = false;
     this.isPhoneEnable = true;
+  }
+
+
+  enableAll() {
+    this.patientForm.get('phone').enable();
+    this.patientForm.get('address').enable();
+    this.patientForm.get('ssn').enable();
+    this.patientForm.get('name').enable();
+    this.patientForm.get('pcp').enable();
+    this.patientForm.get('insuranceID').enable();
   }
 }

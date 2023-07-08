@@ -105,7 +105,7 @@
       <div class="d-flex align-items-center justify-content-center">
         <div class="row m-2">
           <button
-            class="btn btn-outline-primary"
+            class="btn btn-outline-dark"
             (click)="submit(nurseFormData)"
           >
             {{ isUpdate ? "Update" : "Add Nurse" }}
@@ -116,6 +116,7 @@
             type="reset"
             class="btn btn-outline-danger"
             (click)="nurseFormData.reset()"
+            *ngIf="!isUpdate"
           >
             Clear
           </button>
