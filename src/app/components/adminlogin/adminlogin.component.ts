@@ -25,4 +25,7 @@ export class AdminloginComponent {
       localStorage.setItem("isLoggedIn", "true");
     }
   }
+  onRegister() {
+    this.route.navigate(['registration']);
+  }
 }
