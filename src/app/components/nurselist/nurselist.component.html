@@ -29,78 +29,87 @@
             <select
               class="form-select"
               aria-label="Default select example"
-              (change)="getSelectVal($event)"
+              [(ngModel)]="searchAttribute"
             >
-              <option value="0">--Search Nurse by--</option>
-              <option value="1">Search by EmployeeID</option>
-              <!-- <option value="2">Search Position by EmployeeID </option>
-          <option value="3">Search by EmployeeID If Nurse is Registered or Not</option> -->
+            <option value="" disabled selected hidden>
+              --Search nurse by--
+            </option>
+             
+              <option value="empid">Search by EmployeeID</option>
+              <option value="name">Search by Name</option>
+              <option value="ssn">Search by SSN</option>
             </select>
           </div>
           <div class="col">
             <div class="input-group">
               <input
                 type="search"
+                id="search-query"
+                [(ngModel)]="searchQuery"
                 class="form-control rounded"
-                placeholder="Search"
                 aria-label="Search"
-                aria-describedby="search-addon"
-                [(ngModel)]="searchVal"
+                aria-describedby="search"
               />
-              &nbsp;&nbsp;&nbsp;
-              <button
-                type="button"
-                class="btn btn-outline-dark rounded"
-                (click)="search()"
-              >
-                search
-              </button>
+
+              <span>
+                &nbsp;&nbsp;&nbsp;
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark rounded"
+                  (click)="search()"
+                >
+                  Search
+                </button>
+              </span>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card-boday m-2">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">EmployeeID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Position</th>
-              <th scope="col">Registered</th>
-              <th scope="col">SSN</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
+        <div class="card-body table table-striped container container-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">EmployeeID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Registered</th>
+                <th scope="col">SSN</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr *ngFor="let app of nurselist">
-              <td>
-                {{ app.employeeId }}
-              </td>
-              <td>
-                {{ app.name }}
-              </td>
-              <td>
-                {{ app.position }}
-              </td>
-              <td>
-                {{ app.registered ? "Yes" : "No" }}
-              </td>
-              <td>
-                {{ app.ssn }}
-              </td>
-              <td>
-                <a routerLink="/UpdateNurse/{{ app.employeeId }}"
-                  ><button type="button" class="btn btn-outline-dark">
-                    Update
-                  </button></a
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
+            <tbody>
+              <tr *ngFor="let app of Nurse">
+                <td>
+                  {{ app.employeeId }}
+                </td>
+                <td>
+                  {{ app.name }}
+                </td>
+                <td>
+                  {{ app.position }}
+                </td>
+                <td>
+                  {{ app.registered ? "Yes" : "No" }}
+                </td>
+                <td>
+                  {{ app.ssn }}
+                </td>
+                <td>
+                  <a routerLink="/UpdateNurse/{{ app.employeeId }}"
+                    ><button type="button" class="btn btn-outline-dark">
+                      Update
+                    </button></a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+  <!-- [(ngModel)]="searchVal" -->
+  <!-- (change)="getSelectVal($event)" -->
 </div>

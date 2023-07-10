@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AppointmentServiceService {
+ 
 
   private rootUrl: string = "http://localhost:9090/api/appointment"
   
@@ -18,4 +19,10 @@ export class AppointmentServiceService {
   public get =() =>{
     return this.http.get(`${this.rootUrl}`)
   } 
+  public getByAppId = (appointmentId: any) => {
+    return this.http.get(`${this.rootUrl}/${appointmentId}`)
+  }
+  public updateAppointmentExaminationRoom(appointmentId: any, data: any) {
+    return this.http.put(`${this.rootUrl}/update/examinationRoom/${appointmentId}`, data)
+  }
 }

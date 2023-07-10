@@ -26,10 +26,18 @@
       <div class="container mt-4">
         <div class="row">
           <div class="col">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>--Search patient by--</option>
-              <option value="1">Search by PhysicianID</option>
-              <option value="2">Search Patient InsuranceID by PatientID</option>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              [(ngModel)]="searchAttribute"
+            >
+            <option value="" disabled selected hidden>
+              --Search patient by--
+            </option>
+              <option value="ssn">Search by SSN</option>
+              <option value="name">Search by Name</option>
+              <option value="insuranceId">Search by InsuranceID</option>
+              <option value="pcp">Search by PCP</option>
             </select>
           </div>
 
@@ -37,64 +45,74 @@
             <div class="input-group">
               <input
                 type="search"
+                id="search-query"
+                [(ngModel)]="searchQuery"
                 class="form-control rounded"
-                placeholder="Search"
                 aria-label="Search"
-                aria-describedby="search-addon"
+                aria-describedby="search"
               />
-              <button type="button" class="btn btn-outline-dark">
-                search
-              </button>
+
+              <span>
+                &nbsp;&nbsp;&nbsp;
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark rounded"
+                  (click)="search()"
+                >
+                  Search
+                </button>
+              </span>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card-boday m-2">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">SSN</th>
-              <th scope="col">Name</th>
-              <th scope="col">Address</th>
-              <th scope="col">Phone</th>
-              <th scope="col">InsuranceID</th>
-              <th scope="col">PCP</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let app of patientlist">
-              <td>
-                {{ app.ssn }}
-              </td>
-              <td>
-                {{ app.name }}
-              </td>
-              <td>
-                {{ app.address }}
-              </td>
-              <td>
-                {{ app.phone }}
-              </td>
-              <td>
-                {{ app.insuranceID }}
-              </td>
-              <td>
-                {{ app.pcp }}
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-dark"
-                  routerLink="/updatePatient/{{ app.ssn }}"
-                >
-                  Update
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card-boday table table-striped container container-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">SSN</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">InsuranceID</th>
+                <th scope="col">PCP</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let app of Patient">
+                <td>
+                  {{ app.ssn }}
+                </td>
+                <td>
+                  {{ app.name }}
+                </td>
+                <td>
+                  {{ app.address }}
+                </td>
+                <td>
+                  {{ app.phone }}
+                </td>
+                <td>
+                  {{ app.insuranceID }}
+                </td>
+                <td>
+                  {{ app.pcp }}
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    routerLink="/updatePatient/{{ app.ssn }}"
+                  >
+                    Update
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

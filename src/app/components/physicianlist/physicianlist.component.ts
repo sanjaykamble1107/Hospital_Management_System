@@ -14,6 +14,7 @@ export class PhysicianlistComponent implements OnInit {
   allPhysician: Physician[] = [];
   searchAttribute: string = '';
   searchQuery: string = '';
+  appointmentService: any;
   constructor(public physicianService: PhysicianServiceService, private router: ActivatedRoute) { }
   ngOnInit() {
     this.physicianService

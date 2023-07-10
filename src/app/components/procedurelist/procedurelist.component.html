@@ -26,10 +26,11 @@
       <div class="container mt-4">
         <div class="row">
           <div class="col">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>--Search procedure by--</option>
-              <option value="1">Search the cost of procedure by Id</option>
-              <option value="2">Search the cost of procedure by Name</option>
+            <select class="form-select" aria-label="Default select example"
+            [(ngModel)]="searchAttribute">
+              <option value="" disabled selected hidden>--Search procedure by--</option>
+              <option value="code">Search the procedure by Code</option>
+              <option value="name">Search the procedure by Name</option>
             </select>
           </div>
 
@@ -37,18 +38,27 @@
             <div class="input-group">
               <input
                 type="search"
+                id="search-query"
+                [(ngModel)]="searchQuery"
                 class="form-control rounded"
-                placeholder="Search"
                 aria-label="Search"
-                aria-describedby="search-addon"
+                aria-describedby="search"
               />
-              <button type="button" class="btn btn-outline-dark">
-                search
-              </button>
+
+              <span>
+                &nbsp;&nbsp;&nbsp;
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark rounded"
+                  (click)="search()"
+                >
+                  Search
+                </button>
+              </span>
             </div>
           </div>
         </div>
-      </div>
 
       <div class="card-body">
         <table class="table">
