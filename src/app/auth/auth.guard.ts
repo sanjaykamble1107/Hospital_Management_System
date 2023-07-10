@@ -10,8 +10,8 @@ export class AuthGuard implements CanActivate {
   private isLoggedIn!: boolean;
   constructor(public authService: AuthService, public router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    this.authService.isLoggedIn.subscribe((loggedInFlag: boolean) => this.isLoggedIn = loggedInFlag)
-
+    // this.authService.isLoggedIn.subscribe((loggedInFlag: boolean) => this.isLoggedIn = loggedInFlag)
+    
     if (this.isLoggedIn || localStorage.getItem("username")) {
       return true;
     }

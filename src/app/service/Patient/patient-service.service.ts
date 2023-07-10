@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,23 +8,32 @@ import { HttpClient } from '@angular/common/http';
 export class PatientServiceService {
   private rootUrl: string = "http://localhost:9090/api/patient"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public token: TokenStorageService) { }
 
+  private getHeaders(): HttpHeaders {
+    const token = this.token.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
   public save = (data: any) => {
-    return this.http.post(`${this.rootUrl}`, data)
+    const headers = this.getHeaders();
+    return this.http.post(`${this.rootUrl}`, data, { headers })
   }
   public get = () => {
-    return this.http.get(`${this.rootUrl}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}`, { headers })
   }
 
   public getById = (ssn: any) => {
-    return this.http.get(`${this.rootUrl}/SSN/${ssn}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}/SSN/${ssn}`, { headers })
   }
 
   public updateAddress = (ssn: any, data: any) => {
-    return this.http.put(`${this.rootUrl}/address/${ssn}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/address/${ssn}`, data, { headers })
   }
   public updatePhone = (ssn: any, data: any) => {
-    return this.http.put(`${this.rootUrl}/phone/${ssn}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/phone/${ssn}`, data, { headers })
   }
 }

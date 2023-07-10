@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,26 +9,37 @@ import { Injectable } from '@angular/core';
 export class ProcedureServiceService {
   private rootUrl: string = "http://localhost:9090/api/procedure"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public token: TokenStorageService) { }
+
+
+  private getHeaders(): HttpHeaders {
+    const token = this.token.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
 
   public save = (data: any) => {
-    return this.http.post(`${this.rootUrl}`, data)
+    const headers = this.getHeaders();
+    return this.http.post(`${this.rootUrl}`, data, { headers })
   }
 
   public get = () => {
-    return this.http.get(`${this.rootUrl}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}`, { headers })
   }
 
   public getById = (code: number) => {
-    return this.http.get(`${this.rootUrl}/${code}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}/${code}`, { headers })
   }
 
   public updateName = (data: any, code: number) => {
-    return this.http.put(`${this.rootUrl}/name/${code}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/name/${code}`, data, { headers })
   }
-  
+
   public updateCost = (data: any, code: number) => {
-    return this.http.put(`${this.rootUrl}/cost/${code}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/cost/${code}`, data, { headers })
   }
 
 }

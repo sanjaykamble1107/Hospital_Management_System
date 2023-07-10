@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/service/auth/auth.service';
 import { PatientServiceService } from 'src/app/service/Patient/patient-service.service';
 
 @Component({
@@ -9,6 +11,8 @@ import { PatientServiceService } from 'src/app/service/Patient/patient-service.s
 export class PatienttableComponent implements OnInit {
   patientlist: any = [];
   constructor(public patientservice: PatientServiceService) {}
+
+
   ngOnInit(): void {
     this.patientservice
       .get()

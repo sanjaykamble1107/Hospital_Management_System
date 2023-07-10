@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,30 +9,42 @@ import { Injectable } from '@angular/core';
 export class PhysicianServiceService {
   private rootUrl: string = "http://localhost:9090/api/physician"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public authService: AuthService, public token: TokenStorageService) { }
+
+  private getHeaders(): HttpHeaders {
+    const token = this.token.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
 
   public save = (data: any) => {
-    return this.http.post(`${this.rootUrl}`, data)
+    const headers = this.getHeaders();
+    return this.http.post(`${this.rootUrl}`, data, { headers })
   }
 
   public get = () => {
-    return this.http.get(`${this.rootUrl}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}`, { headers })
   }
 
   public getByEmpId = (employeeId: any) => {
-    return this.http.get(`${this.rootUrl}/${employeeId}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}/${employeeId}`, { headers })
   }
-  
+
   public updatePhysicianName(employeeId: any, data: any) {
-    return this.http.put(`${this.rootUrl}/update/name/${employeeId}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/update/name/${employeeId}`, data, { headers })
   }
 
   public updatePhysicianPosition(employeeId: any, data: any) {
-    return this.http.put(`${this.rootUrl}/update/position/${employeeId}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/update/position/${employeeId}`, data, { headers })
   }
 
   public updatePhysicianSSN(employeeId: any, data: any) {
-    return this.http.put(`${this.rootUrl}/update/ssn/${employeeId}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/update/ssn/${employeeId}`, data, { headers })
   }
 
 }

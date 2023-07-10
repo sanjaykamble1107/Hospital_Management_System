@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,18 @@ import { Injectable } from '@angular/core';
 export class AffiliatedwithServiceService {
   private rootUrl: string = "http://localhost:9090/api/affiliated_with"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public token: TokenStorageService) { }
 
-  public save = (data: any) => {
-    return this.http.post(`${this.rootUrl}/post`, data)
+  private getHeaders(): HttpHeaders {
+    const token = this.token.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-   public  get =() =>{
-    return this.http.get(`${this.rootUrl}`)
-   }
+  public save = (data: any) => {
+    const headers = this.getHeaders();
+    return this.http.post(`${this.rootUrl}/post`, data, { headers })
+  }
+  public get = () => {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}`, { headers })
+  }
 }

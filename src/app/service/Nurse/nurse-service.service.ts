@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +9,34 @@ export class NurseServiceService {
 
   private rootUrl: string = "http://localhost:9090/api/nurse"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public token: TokenStorageService) { }
+
+  private getHeaders(): HttpHeaders {
+    const token = this.token.getToken();
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
 
   public save = (data: any) => {
-    return this.http.post(`${this.rootUrl}`, data)
+    const headers = this.getHeaders();
+    return this.http.post(`${this.rootUrl}`, data, { headers })
   }
   public get = () => {
-    return this.http.get(`${this.rootUrl}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}`, { headers })
   }
 
   public getByID = (id: number) => {
-    return this.http.get(`${this.rootUrl}/${id}`)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}/${id}`, { headers })
   }
 
   public updateRegisteredByEmpId(id: any, data: any) {
-    return this.http.put(`${this.rootUrl}/registered/${id}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/registered/${id}`, data, { headers })
   }
 
   public UpdateSsnByEmpid(id: any, data: any) {
-    return this.http.put(`${this.rootUrl}/ssn/${id}`, data)
+    const headers = this.getHeaders();
+    return this.http.put(`${this.rootUrl}/ssn/${id}`, data, { headers })
   }
 }
