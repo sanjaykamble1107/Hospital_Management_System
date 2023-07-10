@@ -3,15 +3,12 @@ import { Injectable } from '@angular/core';
 import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppointmentServiceService {
+  private rootUrl: string = 'http://localhost:9090/api/appointment';
 
-  private rootUrl: string = "http://localhost:9090/api/appointment"
-
-
-  constructor(private http: HttpClient, public token: TokenStorageService) { }
-
+  constructor(private http: HttpClient, public token: TokenStorageService) {}
 
   private getHeaders(): HttpHeaders {
     const token = this.token.getToken();
@@ -19,11 +16,24 @@ export class AppointmentServiceService {
   }
   public save = (data: any) => {
     const headers = this.getHeaders();
-    return this.http.post(`${this.rootUrl}/`, data, { headers })
-  }
+    return this.http.post(`${this.rootUrl}/`, data, { headers });
+  };
 
   public get = () => {
     const headers = this.getHeaders();
-    return this.http.get(`${this.rootUrl}`, { headers })
+    return this.http.get(`${this.rootUrl}`, { headers });
+  };
+  public getByAppId = (appointmentId: any) => {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.rootUrl}/${appointmentId}`, { headers });
+  };
+  public updateAppointmentExaminationRoom(appointmentId: any, data: any) {
+    const headers = this.getHeaders();
+
+    return this.http.put(
+      `${this.rootUrl}/update/examinationRoom/${appointmentId}`,
+      data,
+      { headers }
+    );
   }
 }

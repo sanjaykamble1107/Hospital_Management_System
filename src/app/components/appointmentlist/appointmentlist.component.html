@@ -22,8 +22,52 @@
       >
         <h2>List of Appointment</h2>
       </div>
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              [(ngModel)]="searchAttribute"
+            >
+              <option value="" disabled selected hidden>--Search appointment by--</option>
 
-      <div class="card-body">
+              <option value="appid">Search by AppointmentID</option>
+              <option value="prepNurse"> Search by PrepNurse</option>
+              <option value="phyid">Search by Physician</option>
+              <option value="patid">Search by Patient</option>
+            </select>
+          </div>
+
+          <div class="col">
+            <div class="input-group">
+              <input
+                type="search"
+                id="search-query"
+                [(ngModel)]="searchQuery"
+                class="form-control rounded"
+                aria-label="Search"
+                aria-describedby="search"
+              />
+
+              <span>
+                &nbsp;&nbsp;&nbsp;
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark rounded"
+                  (click)="search()"
+                >
+                  Search
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card-body table table-striped container container-sm">
+          <div class="card-body ">
         <table class="table">
           <thead>
             <tr>
@@ -37,7 +81,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let app of appointmentlist">
+            <tr *ngFor="let app of Appointment">
               <td>
                 {{ app.appointmentId }}
               </td>
@@ -59,6 +103,15 @@
               <td>
                 {{ app.examinationRoom }}
               </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-dark"
+                  routerLink="/updateAppointment/{{ app.appointmentId }}"
+                >
+                  Update
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -66,3 +119,4 @@
     </div>
   </div>
 </div>
+  </div>

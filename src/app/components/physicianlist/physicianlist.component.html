@@ -31,13 +31,10 @@
               aria-label="Default select example"
               [(ngModel)]="searchAttribute"
             >
-              <option selected>--Search physician by--</option>
-
+              <option value="" disabled selected hidden>--Search physician by--</option>
               <option value="name">Search by Name</option>
-
-              <option value="position">Search by Position</option>
-
-              <option value="empid">Search by EmployeeID</option>
+               <option value="position">Search by Position</option>
+                <option value="empid">Search by EmployeeID</option>
             </select>
           </div>
 

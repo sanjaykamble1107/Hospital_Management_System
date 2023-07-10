@@ -25,14 +25,17 @@
       <div class="container mt-4">
         <div class="row">
           <div class="col">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>--Search department by--</option>
-              <option value="1">Search by DepartmentId</option>
-              <option value="2">Search Head by DepartmentId</option>
-              <option value="3">Search by HeadId</option>
-              <option value="4">
-                Search physician is head of any department or not by PhysicianId
-              </option>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              [(ngModel)]="searchAttribute"
+            >
+            <option value="" disabled selected hidden>
+              --Search department by--
+            </option>
+              <option value="deptid">Search by DepartmentId</option>
+              <option value="name">Search by Name</option>
+              <option value="head">Search by Head</option>
             </select>
           </div>
 
@@ -40,52 +43,61 @@
             <div class="input-group">
               <input
                 type="search"
+                id="search-query"
+                [(ngModel)]="searchQuery"
                 class="form-control rounded"
-                placeholder="Search"
                 aria-label="Search"
-                aria-describedby="search-addon"
+                aria-describedby="search"
               />
-              <button type="button" class="btn btn-outline-dark">
-                search
-              </button>
+
+              <span>
+                &nbsp;&nbsp;&nbsp;
+
+                <button
+                  type="button"
+                  class="btn btn-outline-dark rounded"
+                  (click)="search()"
+                >
+                  Search
+                </button>
+              </span>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">DepartmentID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Head</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let row of departmentlist">
-              <td>
-                {{ row.departmentId }}
-              </td>
-              <td>
-                {{ row.name }}
-              </td>
-              <td>
-                {{ row.head }}
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-dark"
-                  routerLink="/updateDepartment/{{ row.departmentId }}"
-                >
-                  Update
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card-body table table-striped container container-sm">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">DepartmentID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Head</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of Department">
+                <td>
+                  {{ row.departmentId }}
+                </td>
+                <td>
+                  {{ row.name }}
+                </td>
+                <td>
+                  {{ row.head }}
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    routerLink="/updateDepartment/{{ row.departmentId }}"
+                  >
+                    Update
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

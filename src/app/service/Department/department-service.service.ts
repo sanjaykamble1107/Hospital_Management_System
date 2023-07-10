@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DepartmentServiceService {
-  private rootUrl: string = "http://localhost:9090/api/department"
+  private rootUrl: string = 'http://localhost:9090/api/department';
 
-  constructor(private http: HttpClient, public token: TokenStorageService) { }
-
+  constructor(private http: HttpClient, public token: TokenStorageService) {}
 
   private getHeaders(): HttpHeaders {
     const token = this.token.getToken();
@@ -17,26 +16,29 @@ export class DepartmentServiceService {
   }
   public save = (data: any) => {
     const headers = this.getHeaders();
-    return this.http.post(`${this.rootUrl}`, data, { headers })
-  }
+    return this.http.post(`${this.rootUrl}`, data, { headers });
+  };
   public get = () => {
     const headers = this.getHeaders();
-    return this.http.get(`${this.rootUrl}/`, { headers })
-  }
+    return this.http.get(`${this.rootUrl}/`, { headers });
+  };
 
   public getById = (deptId: any) => {
     const headers = this.getHeaders();
-    return this.http.get(`${this.rootUrl}/${deptId}`, { headers })
-  }
+    return this.http.get(`${this.rootUrl}/${deptId}`, { headers });
+  };
 
   public updateHead(deptId: any, data: any) {
     const headers = this.getHeaders();
-    return this.http.put(`${this.rootUrl}/update/headid/${deptId}`, data, { headers })
+    return this.http.put(`${this.rootUrl}/update/headid/${deptId}`, data, {
+      headers,
+    });
   }
 
   public updateDepartmentName(deptId: any, data: any) {
     const headers = this.getHeaders();
-    return this.http.put(`${this.rootUrl}/update/deptname/${deptId}`, data, { headers })
+    return this.http.put(`${this.rootUrl}/update/deptname/${deptId}`, data, {
+      headers,
+    });
   }
-
 }
