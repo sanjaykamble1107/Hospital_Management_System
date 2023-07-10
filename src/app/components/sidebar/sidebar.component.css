@@ -3,6 +3,8 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 10px;
+  padding-top: 12px;
+  
 }
 
 .nav-list {
@@ -12,13 +14,13 @@
   margin-bottom: 0%;
 }
 
-.nav-list-item {
+.nav-list-item{
   display: flex;
   align-items: center;
   height: 50px;
 }
 
-.nav-list-item i {
+.nav-list-item i{
   font-size: 1.6rem;
   height: 25px;
   width: 25px;

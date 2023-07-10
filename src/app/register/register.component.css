@@ -1,0 +1,17 @@
+.logo-img{
+    height: 50% !important;
+    width: 20%;
+}
+
+.custom-card{
+    width:  22rem; /* Adjust the width as desired */
+    height: 27rem; /* Adjust the height as desired */
+    border: none;
+}
+.login{
+    position: absolute;
+    left: 20%;
+}
+
+
+

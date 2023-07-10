@@ -33,4 +33,7 @@ export class AdminloginComponent {
   loggedIn = (): boolean => {
     return this.log;
   }
+  onRegister() {
+    this.route.navigate(['registration']);
+  }
 }
