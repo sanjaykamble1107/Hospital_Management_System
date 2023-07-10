@@ -17,7 +17,7 @@ import { ProcedureComponent } from './components/procedure/procedure.component';
 import { ProcedurelistComponent } from './components/procedurelist/procedurelist.component';
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
 import { AuthGuard } from './auth/auth.guard';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 const routes: Routes = [{ path: "", redirectTo: "login", pathMatch: "full" },
 { path: "login", component: AdminloginComponent },
 { path: "registration", component: RegisterComponent},

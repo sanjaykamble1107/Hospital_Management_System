@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { TokenStorageService } from '../TokenStorage/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +22,10 @@ export class AuthService {
   //   this.log = false;
   // }
 
+  registration = (username: string, password: string, roles: string) => {
+    const credential = { username: username, password: password, roles: roles }
+    return this.http.post(`${this.rootUrl}/register`, credential);
+  }
 
   loggedIn = (): boolean => {
     return localStorage.getItem('auth-token') !== null;

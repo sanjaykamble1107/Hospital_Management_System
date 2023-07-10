@@ -23,7 +23,7 @@ import { ProcedurelistComponent } from './components/procedurelist/procedurelist
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './components/header/header.component';
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [

@@ -1,11 +1,11 @@
 .logo-img{
-    height: 50% !important;
+    height: 30% !important;
     width: 20%;
 }
 
 .custom-card{
     width:  22rem; /* Adjust the width as desired */
-    height: 27rem; /* Adjust the height as desired */
+    height: 28rem; /* Adjust the height as desired */
     border: none;
 }
 .login{
