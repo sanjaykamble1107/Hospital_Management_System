@@ -28,8 +28,10 @@
             placeholder="Enter Name"
             formControlName="name"
             class="form-control"
-            required
-          />
+            pattern="[a-zA-Z]+"
+             required />
+            <div *ngIf="patientForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
+            </div>
         </div>
       </div>
       <div class="row m-2">

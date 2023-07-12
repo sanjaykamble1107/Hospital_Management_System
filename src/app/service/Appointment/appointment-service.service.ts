@@ -25,15 +25,11 @@ export class AppointmentServiceService {
   };
   public getByAppId = (appointmentId: any) => {
     const headers = this.getHeaders();
-    return this.http.get(`${this.rootUrl}/${appointmentId}`, { headers });
+    return this.http.get(`${this.rootUrl}/appointmentId/${appointmentId}`, { headers });
   };
-  public updateAppointmentExaminationRoom(appointmentId: any, data: any) {
+  public updateExaminationRoom(appointmentId: any, data: any) {
     const headers = this.getHeaders();
-
-    return this.http.put(
-      `${this.rootUrl}/update/examinationRoom/${appointmentId}`,
-      data,
-      { headers }
+     return this.http.put(`${this.rootUrl}/room/${appointmentId}`, data,{ headers }
     );
   }
 }

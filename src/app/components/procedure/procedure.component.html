@@ -28,8 +28,10 @@
             class="form-control"
             placeholder="Enter Name"
             formControlName="name"
-            required
-          />
+            pattern="[a-zA-Z]+"
+            required />
+           <div *ngIf="procedureForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
+           </div>
         </div>
         <div class="col-md-1">
           <svg

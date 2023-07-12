@@ -9,7 +9,7 @@
     <div class="card-body border-0 center">
       <div class="row m-2">
         <div class="col-md-4">
-          <label class="form-label">DepartmentID</label>
+          <label class="form-label">Department ID</label>
         </div>
         <div class="col-md-7">
           <input
@@ -30,8 +30,10 @@
             class="form-control"
             placeholder="Enter dept Name"
             formControlName="name"
-            required
-          />
+            pattern="[a-zA-Z]+"
+             required />
+            <div *ngIf="departmentForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
+            </div>
         </div>
         <div class="col-md-1">
           <svg

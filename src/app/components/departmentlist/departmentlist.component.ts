@@ -39,7 +39,7 @@ export class DepartmentlistComponent implements OnInit {
            case 'deptid':
             return dept.departmentId === parseInt(this.searchQuery, 7);
           default:
-            return undefined;
+            return "RESULTS NOT FOUND";
         }
       });
     }
