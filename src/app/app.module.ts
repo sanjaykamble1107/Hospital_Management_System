@@ -54,7 +54,7 @@ import { RegisterComponent } from './components/register/register.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

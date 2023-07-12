@@ -2,16 +2,18 @@
   (sideNavToggled)="sideNavStatus = $event"
   *ngIf="logFlag"
 ></app-header>
-<main>
+<main><div class="container">
   <app-sidebar
     [sideNavStatus]="sideNavStatus"
     [ngClass]="{ 'app-side-nav-open': sideNavStatus }"
     *ngIf="logFlag"
   ></app-sidebar>
+ 
   <div
     class="display-area container"
     [ngClass]="{ 'display-area-shrink': sideNavStatus }"
   >
     <router-outlet></router-outlet>
   </div>
+</div>
 </main>

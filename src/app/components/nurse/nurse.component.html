@@ -28,8 +28,11 @@
             placeholder="Enter Name"
             formControlName="name"
             class="form-control"
+            pattern="[a-zA-Z]+"
             required
           />
+          <div *ngIf="nurseForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed</div>
+
         </div>
       </div>
       <div class="row m-2">
@@ -40,8 +43,11 @@
             placeholder="Enter Position"
             formControlName="position"
             class="form-control"
+            pattern="[a-zA-Z]+"
             required
           />
+          <div *ngIf="nurseForm.get('position').hasError('pattern')" class="requiredField">Only letters are allowed</div>
+
         </div>
       </div>
       <div class="row m-2">

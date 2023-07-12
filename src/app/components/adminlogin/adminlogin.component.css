@@ -13,7 +13,9 @@
     position: absolute;
     left: 20%;
 }
-
+.loginButton{
+    background-image: linear-gradient(to right, violet, white);
+}
 
 
 

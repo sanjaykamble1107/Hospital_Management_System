@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PhysicianServiceService } from 'src/app/service/Physician/physician-service.service';
 
+
+
 @Component({
   selector: 'app-physician',
   templateUrl: './physician.component.html',
@@ -32,7 +34,7 @@ export class PhysicianComponent {
       this.isUpdate = true;
       this.physicianService.getByEmpId(this.router.snapshot.params['employeeId']).subscribe((result: any) => {
         this.physicianForm = new FormGroup({
-          employeeId: new FormControl({ value: result['employeeId'], disabled: true }),
+          employeeId: new FormControl({ value: result['employeeId'], disabled: true, }),
           name: new FormControl({ value: result['name'], disabled: true }),
           position: new FormControl({ value: result['position'], disabled: true }),
           ssn: new FormControl({ value: result['ssn'], disabled: true })
@@ -99,10 +101,23 @@ export class PhysicianComponent {
     this.isSSNEnable = true
   }
 
-  enableAll(){
+  enableAll() {
     this.physicianForm.get('ssn').enable();
     this.physicianForm.get('position').enable();
     this.physicianForm.get('name').enable();
     this.physicianForm.get('employeeId').enable();
   }
+
+  alphaOnly(e: any) {  
+    var regex = new RegExp("^[a-zA-Z]+$");
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+      return true;
+    }
+
+    e.preventDefault();
+    return false;
+  }
+
 }
+
