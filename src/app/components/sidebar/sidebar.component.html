@@ -1,59 +1,143 @@
 <div class="side-nav-content">
   <ul class="nav-list" [ngClass]="{ 'nav-list-open': sideNavStatus }">
-    <li class="nav-list-item"  [routerLink]="['/Home']">
-      <a class="nav-link active" aria-current="page">
+    <li>
+      <a
+        class="nav-link nav-list-item"
+        aria-current="page"
+        [routerLink]="['/Home']"
+        role="button"
+      >
         <i>
           <fa-icon [icon]="home"></fa-icon>
         </i>
         Home</a
       >
     </li>
-    <li class="nav-list-item"  [routerLink]="['/PhysicianList']">
-      <a class="nav-link">
+    <li>
+      <a
+        class="nav-link nav-list-item"
+        data-bs-toggle="collapse"
+        href="#collapseExample"
+        role="button"
+      >
         <i>
           <fa-icon [icon]="doctor"></fa-icon>
         </i>
-        Physician</a>
+        Physician</a
+      >
+      <div class="collapse" id="collapseExample">
+        <a [routerLink]="['/Physician']" class="nav-link">
+          <li class="nav-list-item px-3">Add Physician</li>
+        </a>
+        <a [routerLink]="['/PhysicianList']" class="nav-link">
+          <li class="nav-list-item px-3">Physician List</li>
+        </a>
+      </div>
     </li>
-    <li class="nav-list-item" [routerLink]="['/NurseList']">
-      <a class="nav-link" >
+    <li>
+      <a
+        class="nav-link nav-list-item"
+        data-bs-toggle="collapse"
+        href="#collapseNurse"
+        role="button"
+      >
         <i>
           <fa-icon [icon]="nurse"></fa-icon>
         </i>
         Nurse</a
       >
+      <div class="collapse" id="collapseNurse">
+        <a [routerLink]="['/Nurse']" class="nav-link">
+          <li class="nav-list-item px-3">Add Nurse</li>
+        </a>
+        <a [routerLink]="['/NurseList']" class="nav-link">
+          <li class="nav-list-item px-3">Nurse List</li>
+        </a>
+      </div>
     </li>
-    <li class="nav-list-item" [routerLink]="['/PatientList']">
-      <a class="nav-link">
+    <li>
+      <a
+        class="nav-link nav-list-item"
+        data-bs-toggle="collapse"
+        href="#collapsePatient"
+        role="button"
+      >
         <i>
           <fa-icon [icon]="bed"></fa-icon>
         </i>
         Patient</a
       >
+      <div class="collapse" id="collapsePatient">
+        <a [routerLink]="['/Patient']" class="nav-link">
+          <li class="nav-list-item px-3">Add Patient</li>
+        </a>
+        <a [routerLink]="['/PatientList']" class="nav-link">
+          <li class="nav-list-item px-3">Patient List</li>
+        </a>
+      </div>
     </li>
-    <li class="nav-list-item" [routerLink]="['/AppointmentList']">
-      <a class="nav-link">
+    <li>
+      <a
+        class="nav-link nav-list-item"
+        data-bs-toggle="collapse"
+        href="#collapseAppointment"
+        role="button"
+      >
         <i>
           <fa-icon [icon]="appointment"></fa-icon>
         </i>
         Appointment</a
       >
+      <div class="collapse" id="collapseAppointment">
+        <a [routerLink]="['/Appointment']" class="nav-link">
+          <li class="nav-list-item px-3">Add Appointment</li>
+        </a>
+        <a [routerLink]="['/AppointmentList']" class="nav-link">
+          <li class="nav-list-item px-3">Appointment List</li>
+        </a>
+      </div>
     </li>
-    <li class="nav-list-item" [routerLink]="['/DepartmentList']">
-      <a class="nav-link">
+    <li>
+      <a
+        class="nav-link nav-list-item"
+        data-bs-toggle="collapse"
+        href="#collapseDepartment"
+        role="button"
+      >
         <i>
           <fa-icon [icon]="department"></fa-icon>
         </i>
         Department</a
       >
+      <div class="collapse" id="collapseDepartment">
+        <a [routerLink]="['/Department']" class="nav-link">
+          <li class="nav-list-item px-3">Add Department</li>
+        </a>
+        <a [routerLink]="['/DepartmentList']" class="nav-link">
+          <li class="nav-list-item px-3">Department List</li>
+        </a>
+      </div>
     </li>
-    <li class="nav-list-item" [routerLink]="['/ProcedureList']">
-      <a class="nav-link">
+    <li>
+      <a
+        class="nav-link nav-list-item"
+        data-bs-toggle="collapse"
+        href="#collapseProcedure"
+        role="button"
+      >
         <i>
           <fa-icon [icon]="procedure"></fa-icon>
         </i>
-        Procedure
-      </a>
+        Procedure</a
+      >
+      <div class="collapse" id="collapseProcedure">
+        <a [routerLink]="['/Procedure']" class="nav-link">
+          <li class="nav-list-item px-3">Add Procedure</li>
+        </a>
+        <a [routerLink]="['/ProcedureList']" class="nav-link">
+          <li class="nav-list-item px-3">Procedure List</li>
+        </a>
+      </div>
     </li>
   </ul>
 </div>
