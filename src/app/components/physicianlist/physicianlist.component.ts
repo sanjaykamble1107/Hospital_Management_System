@@ -24,9 +24,7 @@ export class PhysicianlistComponent implements OnInit {
         this.allPhysician = response;
       });
 
-      // this.physicianService
-      //   .get()
-      //   .subscribe((response: any) => (this.Physician = [...response]));
+
     }
     search(): void {
       if(this.searchQuery === '') {
