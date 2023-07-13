@@ -1,4 +1,4 @@
-package com.hms;
+package com.hms.controller;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
@@ -28,9 +28,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hms.auth.JwtDummyAuthentication;
 import com.hms.dto.ProceduresDto;
 import com.hms.dto.ResponseMessageDto;
-import com.hms.dummy.JwtDummyAuthentication;
+import com.hms.exception.model.NurseNotFoundException;
+import com.hms.exception.model.ProcedureNotFoundException;
+import com.hms.exception.model.ValidationException;
 import com.hms.service.impl.ProceduresService;
 
 @RunWith(SpringRunner.class)
@@ -68,6 +71,24 @@ class TestProceduresController {
 	     .andExpect(status().isOk());
 	     verify(proceduresService, times(1)).addNewTreatment(any(ProceduresDto.class));
 	}
+	
+	@Test //Negative
+	public void testAddNewTreatmentValidationFailed() throws Exception{
+		Integer code =1;
+         
+		ProceduresDto proceduresDto = new ProceduresDto();
+		proceduresDto.setCode(1); 
+		proceduresDto.setCost(12000);
+		proceduresDto.setName("Ramji");
+		
+	     when(proceduresService.addNewTreatment(any(ProceduresDto.class))).thenThrow(new ValidationException("Validation Failed"));
+	     mockMvc.perform(MockMvcRequestBuilders.post("/procedure")
+	    		 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+	     .contentType(MediaType.APPLICATION_JSON)
+	     .content(new ObjectMapper().writeValueAsString(proceduresDto)))
+	     .andExpect(status().isBadRequest());
+	     verify(proceduresService, times(1)).addNewTreatment(any(ProceduresDto.class));
+	}
 
 	@Test
 	public void testGetListOfAvailableTreatment() throws Exception {
@@ -77,6 +98,17 @@ class TestProceduresController {
 		mockMvc.perform(MockMvcRequestBuilders.get("/procedure")
 		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
 		.andExpect(status().isOk());
+		verify(proceduresService, times(1)).getListOfAvailableTreatment();
+	}
+	
+	@Test //Negative
+	public void testGetListOfAvailableTreatmentNotFound() throws Exception {
+		ProceduresDto proceduresDto = new ProceduresDto();
+		List<ProceduresDto> list = Arrays.asList(proceduresDto);
+		when(proceduresService.getListOfAvailableTreatment()).thenThrow(new ProcedureNotFoundException("No Procedure Found!"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/procedure")
+		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+		.andExpect(status().isNotFound());
 		verify(proceduresService, times(1)).getListOfAvailableTreatment();
 	}
 
@@ -93,6 +125,21 @@ class TestProceduresController {
 				.andExpect(jsonPath("$.code").value(1));
 		verify(proceduresService, times(1)).getCostOfProcedureById(code);
 	}
+	
+	@Test//Negative
+	public void testGetCostOfProcedureByIdNotFound() throws Exception {
+		Integer code = 1;
+		ProceduresDto proceduresDto = new ProceduresDto();
+		proceduresDto.setCode(code);
+		proceduresDto.setCost(2200);
+		proceduresDto.setName("Reverse Rhinopodoplasty");
+		
+		when(proceduresService.getCostOfProcedureById(code)).thenThrow(new ProcedureNotFoundException("No Procedure Found!"));
+		mockMvc.perform(get("/procedure/costofprocedure/{id}", code)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+				.andExpect(status().isNotFound());
+		verify(proceduresService, times(1)).getCostOfProcedureById(code);
+	}
 
 	@Test
 	public void testGetCostOfProcedureByName() throws Exception {
@@ -107,6 +154,20 @@ class TestProceduresController {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.code", is(1))).andExpect(jsonPath("$.name", is("Reverse Rhinopodoplasty")))
 				.andExpect(jsonPath("$.cost", is(1500.0)));
+		verify(proceduresService, times(1)).getCostOfProcedureByName(name);
+	}
+	
+	@Test//Negative
+	public void testGetCostOfProcedureByNameNotFound() throws Exception {
+		String name = "Reverse Rhinopodoplasty";
+		ProceduresDto proceduresDto = new ProceduresDto();
+		proceduresDto.setCode(1);
+		proceduresDto.setName(name);
+		proceduresDto.setCost(1500);
+		when(proceduresService.getCostOfProcedureByName(name)).thenThrow(new ProcedureNotFoundException("No Procedure Found!"));
+		mockMvc.perform(get("/procedure/cost/{name}", name)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+				.andExpect(status().isNotFound());
 		verify(proceduresService, times(1)).getCostOfProcedureByName(name);
 	}
 
@@ -137,6 +198,29 @@ class TestProceduresController {
 	        verify(proceduresService, times(1)).updateCostOfProcedureById(eq(code), any(ProceduresDto.class));
 
 	    }
+	@Test //Negative
+	public void testUpdateCostOfProcedureByIdNotFound() throws Exception {
+	        Integer code = 2;
+	        Integer cost = 12000;
+
+	        ProceduresDto procedureDto = new ProceduresDto();
+	        procedureDto.setCode(code);
+	        procedureDto.setCost(cost);
+	        procedureDto.setName("Ramu");
+	        
+	        ProceduresDto updatedprocedureDto = new ProceduresDto();
+	        updatedprocedureDto.setCode(code);
+	        updatedprocedureDto.setCost(13000);
+	        when(proceduresService.updateCostOfProcedureById(eq(code), any(ProceduresDto.class)))
+	                .thenThrow(new ProcedureNotFoundException ("No Procedure Found!"));
+	        mockMvc.perform(put("/procedure/cost/{id}", code)
+	        		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+	        		.contentType(MediaType.APPLICATION_JSON)
+	                .content(asJsonString(procedureDto)))
+	                .andExpect(status().isNotFound());
+	        verify(proceduresService, times(1)).updateCostOfProcedureById(eq(code), any(ProceduresDto.class));
+
+	    }
 	
 	@Test
 	public void testUpdateNameOfProcedureById() throws Exception{
@@ -161,6 +245,31 @@ class TestProceduresController {
 	                .andExpect(status().isOk())
 	                .andExpect(jsonPath("$.code").value(3))
 	                .andExpect(jsonPath("$.name").value("Hitesh"));
+	        verify(proceduresService, times(1)).updateNameOfProcedureById(eq(code), any(ProceduresDto.class));
+		
+	}
+	
+	@Test //Negative
+	public void testUpdateNameOfProcedureByIdFailed() throws Exception{
+		    Integer code = 2;
+	        String name = "Harsh";
+
+	        ProceduresDto procedureDto = new ProceduresDto();
+	        procedureDto.setCode(code);
+	        procedureDto.setName(name);
+	        procedureDto.setCost(1200.0);
+	        
+	        ProceduresDto updatedprocedureDto = new ProceduresDto();
+	        updatedprocedureDto.setCode(3);
+	        updatedprocedureDto.setName("Hitesh");
+	  
+	        when(proceduresService.updateNameOfProcedureById(eq(code), any(ProceduresDto.class)))
+	                .thenThrow(new ProcedureNotFoundException("No Procedure Found"));
+	        mockMvc.perform(put("/procedure/name/{id}", code)
+	        		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+	        		.contentType(MediaType.APPLICATION_JSON)
+	                .content(asJsonString(procedureDto)))
+	                .andExpect(status().isNotFound());
 	        verify(proceduresService, times(1)).updateNameOfProcedureById(eq(code), any(ProceduresDto.class));
 		
 	}

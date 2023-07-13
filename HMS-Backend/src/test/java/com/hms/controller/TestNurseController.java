@@ -1,4 +1,4 @@
-package com.hms;
+package com.hms.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -24,9 +24,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hms.auth.JwtDummyAuthentication;
 import com.hms.dto.NurseDto;
 import com.hms.dto.ResponseMessageDto;
-import com.hms.dummy.JwtDummyAuthentication;
+import com.hms.exception.model.AppointmentNotFoundException;
+import com.hms.exception.model.NurseNotFoundException;
 import com.hms.service.impl.NurseService;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -59,7 +61,25 @@ class TestNurseController {
 				.content(new ObjectMapper().writeValueAsString(nurseDto))).andExpect(status().isOk());
 		verify(nurseService, times(1)).addNurse(any(NurseDto.class));
 	}
-
+	
+	@Test//Negative
+	public void testAddNurseNotFound() throws Exception {
+		Integer employeeId = 5;
+		NurseDto nurseDto = new NurseDto();
+		nurseDto.setEmployeeId(employeeId);
+		nurseDto.setName("Pritesh");
+		nurseDto.setPosition("Doc");
+		nurseDto.setRegistered(true);
+		nurseDto.setSsn(21212100);
+		
+		when(nurseService.addNurse(any(NurseDto.class))).thenThrow(new NurseNotFoundException("No Nurse Found!"));
+		mockMvc.perform(MockMvcRequestBuilders.post("/nurse")
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(new ObjectMapper().writeValueAsString(nurseDto))).andExpect(status().isNotFound());
+		verify(nurseService, times(1)).addNurse(any(NurseDto.class));
+	}
+	
 	@Test
 	public void testgetListOfNurse() throws Exception {
 		NurseDto nurseDto = new NurseDto();
@@ -68,6 +88,17 @@ class TestNurseController {
 		mockMvc.perform(MockMvcRequestBuilders.get("/nurse")
 		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
 		.andExpect(status().isOk());
+		verify(nurseService, times(1)).getListOfNurse();
+	}
+	
+	@Test//Negative
+	public void testgetListOfNurseNotFound() throws Exception {
+		NurseDto nurseDto = new NurseDto();
+		List<NurseDto> list = Arrays.asList(nurseDto);
+		when(nurseService.getListOfNurse()).thenThrow(new NurseNotFoundException("No Nurse Found!"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/nurse")
+		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+		.andExpect(status().isNotFound());
 		verify(nurseService, times(1)).getListOfNurse();
 	}
 
@@ -80,13 +111,27 @@ class TestNurseController {
 		nurseDto.setSsn(151515152);
 
 		when(nurseService.getNurseDetailsById(employeeId)).thenReturn(nurseDto);
-
 		mockMvc.perform(get("/nurse/{employeeId}", employeeId)
 				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.name", is("Raju"))).andExpect(jsonPath("$.position", is("Physician")))
 				.andExpect(jsonPath("$.ssn", is(151515152)));
 
+		verify(nurseService, times(1)).getNurseDetailsById(employeeId);
+	}
+	
+	@Test //Negative
+	public void testgetNurseByIdNotFound() throws Exception {
+		Integer employeeId = 17;
+		NurseDto nurseDto = new NurseDto();
+		nurseDto.setName("Raju");
+		nurseDto.setPosition("Physician");
+		nurseDto.setSsn(151515152);
+
+		when(nurseService.getNurseDetailsById(employeeId)).thenThrow(new NurseNotFoundException("Nurse Not Found with id: " + employeeId));
+		mockMvc.perform(get("/nurse/{employeeId}", employeeId)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+				.andExpect(status().isNotFound());
 		verify(nurseService, times(1)).getNurseDetailsById(employeeId);
 	}
 
@@ -102,6 +147,19 @@ class TestNurseController {
 		.andExpect(status().isOk());
 		verify(nurseService, times(1)).getPositionOfNurse(employeeId);
 	}
+	
+	@Test//Negative
+	public void testgetPositionOfNurseNotFound() throws Exception {
+		Integer employeeId = 17;
+		// String position="doctor";
+		NurseDto nurseDto = new NurseDto();
+		nurseDto.setPosition("doctor");
+		when(nurseService.getPositionOfNurse(employeeId)).thenThrow(new NurseNotFoundException("Nurse Not Found with id: " + employeeId));
+		mockMvc.perform(MockMvcRequestBuilders.get("/nurse/position/{empid}", employeeId)
+		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+		.andExpect(status().isNotFound());
+		verify(nurseService, times(1)).getPositionOfNurse(employeeId);
+	}
 
 	@Test
 	public void testisNurseRegistered() throws Exception {
@@ -112,6 +170,18 @@ class TestNurseController {
 		mockMvc.perform(MockMvcRequestBuilders.get("/nurse/registered/{empid}", employeeId)
 		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
 		.andExpect(status().isOk());
+		verify(nurseService, times(1)).isNurseRegistered(employeeId);
+	}
+    
+	@Test //Negative
+	public void testisNurseRegisteredNotFound() throws Exception {
+		Integer employeeId = 18;
+		NurseDto nurseDto = new NurseDto();
+		nurseDto.setRegistered(true);
+		when(nurseService.isNurseRegistered(employeeId)).thenThrow(new NurseNotFoundException("No Nurse Found!"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/nurse/registered/{empid}", employeeId)
+		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+		.andExpect(status().isNotFound());
 		verify(nurseService, times(1)).isNurseRegistered(employeeId);
 	}
 
@@ -134,6 +204,24 @@ class TestNurseController {
 				.andExpect(jsonPath("$.employeeId").value(3)).andExpect(jsonPath("$.registered").value(false));
 		verify(nurseService, times(1)).updateRegistered(eq(employeeId), any(NurseDto.class));
 	}
+	
+	@Test//Negative
+	public void testUpdateRegisteredNurseNotRegistered() throws Exception {
+		Integer employeeId = 3;
+	
+		NurseDto nurseDto = new NurseDto();
+		nurseDto.setEmployeeId(2);
+		nurseDto.setRegistered(true);
+		nurseDto.setName("Sonya");
+		nurseDto.setPosition("doc");
+		nurseDto.setSsn(2323332);
+		when(nurseService.updateRegistered(eq(employeeId), any(NurseDto.class))).thenThrow(new NurseNotFoundException("Update Resgistered Failed"));
+		mockMvc.perform(put("/nurse/registered/{empid}", employeeId)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(asJsonString(nurseDto))).andExpect(status().isNotFound());
+		verify(nurseService, times(1)).updateRegistered(eq(employeeId), any(NurseDto.class));
+	}
 
 	@Test
 	public void testUpdateSsnNurse() throws Exception {
@@ -142,7 +230,7 @@ class TestNurseController {
 		NurseDto nurseDto = new NurseDto();
 		nurseDto.setEmployeeId(employeeId);
 		nurseDto.setSsn(ssn);
-
+		
 		NurseDto updatednurseDto = new NurseDto();
 		updatednurseDto.setEmployeeId(3);
 		updatednurseDto.setSsn(20222);
@@ -155,6 +243,29 @@ class TestNurseController {
 		verify(nurseService, times(1)).updateSSN(eq(employeeId), any(NurseDto.class));
 	}
 
+	
+	@Test//Negative
+	public void testUpdateSsnNurseFailed() throws Exception {
+		Integer employeeId = 2;
+		Integer ssn = 10111;
+		NurseDto nurseDto = new NurseDto();
+		nurseDto.setEmployeeId(2);
+		nurseDto.setRegistered(true);
+		nurseDto.setName("Sonya");
+		nurseDto.setPosition("doc");
+		nurseDto.setSsn(2323332);
+
+		NurseDto updatednurseDto = new NurseDto();
+		updatednurseDto.setEmployeeId(2);
+		updatednurseDto.setSsn(20222);
+		when(nurseService.updateSSN(eq(employeeId), any(NurseDto.class))).thenThrow(new NurseNotFoundException("Snn update failed"));
+		mockMvc.perform(put("/nurse/ssn/{empid}", employeeId)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(asJsonString(nurseDto))).andExpect(status().isNotFound());
+				
+		verify(nurseService, times(1)).updateSSN(eq(employeeId), any(NurseDto.class));
+	}
 	private byte[] asJsonString(NurseDto nurseDto) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 

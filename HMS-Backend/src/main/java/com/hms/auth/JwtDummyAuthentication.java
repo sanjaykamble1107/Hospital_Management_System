@@ -1,4 +1,4 @@
-package com.hms.dummy;
+package com.hms.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

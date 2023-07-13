@@ -1,9 +1,7 @@
-package com.hms;
-
+package com.hms.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -11,36 +9,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.lang.reflect.Method;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hms.auth.JwtDummyAuthentication;
 import com.hms.dto.PhysicianDto;
 import com.hms.dto.ResponseMessageDto;
-import com.hms.dummy.JwtDummyAuthentication;
-import com.hms.exception.exceptions.ValidationExceptionResponse;
 import com.hms.exception.model.PhysicianNotFoundException;
 import com.hms.exception.model.ValidationException;
 import com.hms.service.impl.PhysicianService;
@@ -67,24 +52,33 @@ class TestPhysicianController {
 		Integer employeeid = 5;
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setSsn(employeeid);
+		physicianDto.setEmployeeId(employeeid);
+		physicianDto.setName("Harsh");
+		physicianDto.setPosition("Surgery");
+
 		ResponseMessageDto message = new ResponseMessageDto();
 		message.setResponse("Record Created Successfully");
 		when(physicianService.addPhysician(any(PhysicianDto.class))).thenReturn(message);
-		mockMvc.perform(MockMvcRequestBuilders.post("/physician").header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+		mockMvc.perform(MockMvcRequestBuilders.post("/physician")
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
 				.contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(physicianDto)))
 				.andExpect(status().isOk());
 		verify(physicianService, times(1)).addPhysician(any(PhysicianDto.class));
 	}
 
 	@Test // Negative
-	public void testAddPhysicianNegative() throws Exception {
+	public void testAddPhysicianValidationFailed() throws Exception {
 		Integer employee = 5;
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setEmployeeId(null);
+		physicianDto.setName("Harsh");
+		physicianDto.setPosition("Physician");
+		physicianDto.setSsn(123456789);
 		when(physicianService.addPhysician(physicianDto)).thenThrow(new ValidationException("Validation failed"));
 		// Simulate a failure response
-		mockMvc.perform(MockMvcRequestBuilders.post("/physician").contentType(MediaType.APPLICATION_JSON)
-				.content(new ObjectMapper().writeValueAsString(physicianDto)));
+		mockMvc.perform(MockMvcRequestBuilders.post("/physician").header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(physicianDto)))
+				.andExpect(status().isBadRequest());
 		// .andExpect(jsonPath("$.response").value("Failed to add patient"));
 		verify(physicianService, times(1)).addPhysician(physicianDto);
 	}
@@ -100,15 +94,16 @@ class TestPhysicianController {
 	}
 
 	@Test  //Negative
-	  public void testgetListOfPhysicianFailure() throws Exception{
+	  public void testGetListOfPhysicianNegative() throws Exception{
 			when(physicianService.getListOfPhysicianDto()).thenThrow(new PhysicianNotFoundException("No Physician Found!"));
-			mockMvc.perform(MockMvcRequestBuilders.get("/physician"))
+			mockMvc.perform(MockMvcRequestBuilders.get("/physician")
+					.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
 			.andExpect(status().isNotFound());
 			verify(physicianService, times(1)).getListOfPhysicianDto();  
 	  }
 
 	@Test
-	public void testgetPhysicianByName() throws Exception {
+	public void testGetPhysicianByName() throws Exception {
 		String name = "Harsh";
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setEmployeeId(11);
@@ -124,19 +119,23 @@ class TestPhysicianController {
 	}
 
 	@Test // Negative
-	public void testgetPhysicianByNameNegative() throws Exception {
+	public void testGetPhysicianByNameNegative() throws Exception {
 		String name = "Harry";
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setName(name);
+		physicianDto.setEmployeeId(11);
+		physicianDto.setPosition("Physician");
+		physicianDto.setSsn(123456789);
 		when(physicianService.getPhysicianByName(name))
 				.thenThrow(new PhysicianNotFoundException("No Physician Found!"));
 
-		mockMvc.perform(get("/physician/name/{name}", name)).andExpect(status().isNotFound());
+		mockMvc.perform(get("/physician/name/{name}", name).header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+				.andExpect(status().isNotFound());
 		verify(physicianService, times(1)).getPhysicianByName(name);
 	}
 
 	@Test
-	public void testgetPhysicianByPosition() throws Exception {
+	public void testGetPhysicianByPosition() throws Exception {
 		String position = "Analyst";
 		PhysicianDto physicianDto = new PhysicianDto();
 		List<PhysicianDto> list = Arrays.asList(physicianDto);
@@ -149,19 +148,19 @@ class TestPhysicianController {
 	}
 
 	@Test // Negative
-	public void testgetPhysicianByPositionNegative() throws Exception {
+	public void testGetPhysicianByPositionNegative() throws Exception {
 		String position = "Analyst";
 		PhysicianDto physicianDto = new PhysicianDto();
 		// List<PhysicianDto> list = Arrays.asList(physicianDto);
 		when(physicianService.getPhysicianByPosition(position))
 				.thenThrow(new PhysicianNotFoundException("No Physician Found!"));
-		mockMvc.perform(MockMvcRequestBuilders.get("/physician/position/{position}", position))
-				.andExpect(status().isNotFound());
+		mockMvc.perform(MockMvcRequestBuilders.get("/physician/position/{position}", position)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())).andExpect(status().isNotFound());
 		verify(physicianService, times(1)).getPhysicianByPosition(position);
 	}
 
 	@Test
-	public void testgetPhysicianByEmpid() throws Exception {
+	public void testGetPhysicianByEmpid() throws Exception {
 		Integer employeeId = 17;
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setName("Raju");
@@ -179,26 +178,33 @@ class TestPhysicianController {
 	}
 
 	@Test // Negative
-	public void testgetPhysicianByEmpidNegative() throws Exception {
+	public void testGetPhysicianByEmpidNegative() throws Exception {
 		Integer employeeId = 17;
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setEmployeeId(employeeId);
+		physicianDto.setPosition("Cardiologist");
+		physicianDto.setSsn(112);
+		physicianDto.setName("Prabir");
+
 		when(physicianService.getPhysicianByEmpid(employeeId))
 				.thenThrow(new PhysicianNotFoundException("No Physician Found!"));
 
-		mockMvc.perform(get("/physician/{employeeId}", employeeId)).andExpect(status().isNotFound());
+		mockMvc.perform(
+				get("/physician/{employeeId}", employeeId).header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+				.andExpect(status().isNotFound());
 		verify(physicianService, times(1)).getPhysicianByEmpid(employeeId);
 	}
 
 	@Test
-	public void testupdatePhysicianPosition() throws Exception {
+	public void testUpdatePhysicianPosition() throws Exception {
 		Integer employeeId = 1;
 		String position = "Nurse";
 
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setEmployeeId(employeeId);
 		physicianDto.setPosition(position);
-
+		physicianDto.setSsn(112);
+		physicianDto.setName("Prabir");
 		PhysicianDto updatedphysicianDto = new PhysicianDto();
 		updatedphysicianDto.setEmployeeId(employeeId);
 		updatedphysicianDto.setPosition("Doctor");
@@ -206,7 +212,8 @@ class TestPhysicianController {
 		when(physicianService.updatePhysicianPosition(eq(employeeId), any(PhysicianDto.class)))
 				.thenReturn(updatedphysicianDto);
 		mockMvc.perform(put("/physician/update/position/{employeeId}", employeeId)
-				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()).contentType(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(physicianDto))).andExpect(status().isOk())
 				.andExpect(jsonPath("$.employeeId").value(employeeId))
 				.andExpect(jsonPath("$.position").value("Doctor"));
@@ -215,13 +222,14 @@ class TestPhysicianController {
 	}
 
 	@Test // Negative
-	public void testupdatePhysicianPositionNegative() throws Exception {
+	public void testUpdatePhysicianPositionNegative() throws Exception {
 		Integer employeeId = 1;
 		String position = "Nurse";
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setEmployeeId(employeeId);
-
 		physicianDto.setPosition(position);
+		physicianDto.setSsn(112);
+		physicianDto.setName("Prabir");
 
 		PhysicianDto updatedPhysicianDto = new PhysicianDto();
 		updatedPhysicianDto.setEmployeeId(employeeId);
@@ -229,10 +237,9 @@ class TestPhysicianController {
 
 		when(physicianService.updatePhysicianPosition(eq(employeeId), any(PhysicianDto.class)))
 				.thenThrow(new PhysicianNotFoundException("No Physician Found!"));
-
 		mockMvc.perform(put("/physician/update/position/{employeeId}", employeeId)
-				.contentType(MediaType.APPLICATION_JSON).content(asJsonString(physicianDto)))
-				.andExpect(status().isNotFound());
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()).contentType(MediaType.APPLICATION_JSON)
+				.content(asJsonString(physicianDto))).andExpect(status().isNotFound());
 		verify(physicianService, times(1)).updatePhysicianPosition(eq(employeeId), any(PhysicianDto.class));
 	}
 
@@ -253,6 +260,8 @@ class TestPhysicianController {
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setEmployeeId(employeeId);
 		physicianDto.setPosition(name);
+		physicianDto.setSsn(112);
+		physicianDto.setName("Prabir");
 
 		PhysicianDto updatedphysicianDto = new PhysicianDto();
 		updatedphysicianDto.setEmployeeId(employeeId);
@@ -268,7 +277,7 @@ class TestPhysicianController {
 	}
 
 	@Test // Negative
-	public void testupdatePhysicianNameNotFound() throws Exception {
+	public void testUpdatePhysicianNameNotFound() throws Exception {
 		Integer employeeId = 1;
 		String position = "head";
 		PhysicianDto physicianDto = new PhysicianDto();
@@ -291,7 +300,7 @@ class TestPhysicianController {
 	}
 
 	@Test
-	public void testupdateSsnOfPhysician() throws Exception {
+	public void testUpdateSsnOfPhysician() throws Exception {
 		Integer employeeId = 2;
 		Integer ssn = 1222222;
 
@@ -313,13 +322,15 @@ class TestPhysicianController {
 	}
 
 	@Test // Negative
-	public void testupdateSsnOfPhysicianNegative() throws Exception {
+	public void testUpdateSsnOfPhysicianNegative() throws Exception {
 		Integer employeeId = 2;
 		Integer ssn = 1222222;
 
 		PhysicianDto physicianDto = new PhysicianDto();
 		physicianDto.setEmployeeId(employeeId);
 		physicianDto.setSsn(ssn);
+		physicianDto.setName("Harsh");
+		physicianDto.setPosition("MD");
 
 		PhysicianDto updatedphysicianDto = new PhysicianDto();
 		updatedphysicianDto.setEmployeeId(employeeId);
@@ -328,7 +339,8 @@ class TestPhysicianController {
 		when(physicianService.updateSsnOfPhysician(eq(employeeId), any(PhysicianDto.class)))
 				.thenThrow(new PhysicianNotFoundException("No Physician Found!"));
 
-		mockMvc.perform(put("/physician/update/ssn/{employeeId}", employeeId).contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(put("/physician/update/ssn/{employeeId}", employeeId)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()).contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(physicianDto))).andExpect(status().isNotFound());
 		verify(physicianService, times(1)).updateSsnOfPhysician(eq(employeeId), any(PhysicianDto.class));
 	}

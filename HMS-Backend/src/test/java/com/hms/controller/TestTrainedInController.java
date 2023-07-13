@@ -1,4 +1,4 @@
-package com.hms;
+package com.hms.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
@@ -25,11 +25,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hms.auth.JwtDummyAuthentication;
 import com.hms.dto.PhysicianDto;
 import com.hms.dto.ProceduresDto;
 import com.hms.dto.ResponseMessageDto;
 import com.hms.dto.TrainedInDto;
-import com.hms.dummy.JwtDummyAuthentication;
+import com.hms.exception.model.ProcedureNotFoundException;
 import com.hms.exception.model.ValidationException;
 import com.hms.service.impl.DepartmentService;
 import com.hms.service.impl.TrainedInService;
@@ -74,9 +75,11 @@ class TestTrainedInController {
 		 trainedInDto.setPhysician(null);
 		 when(trainedInService.addCertification(trainedInDto)).thenThrow(new ValidationException("Validation failed"));
 			// Simulate a failure response
-			mockMvc.perform(MockMvcRequestBuilders.post("/trained_in").contentType(MediaType.APPLICATION_JSON)
-					.content(new ObjectMapper().writeValueAsString(trainedInDto)));
-			// .andExpect(jsonPath("$.response").value("Failed to add patient"));
+			mockMvc.perform(MockMvcRequestBuilders.post("/trained_in")
+					 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+					.contentType(MediaType.APPLICATION_JSON)
+					.content(new ObjectMapper().writeValueAsString(trainedInDto)))
+			        .andExpect(status().isBadRequest());
 			verify(trainedInService, times(1)).addCertification(trainedInDto);	
     }
 	@Test
@@ -92,7 +95,13 @@ class TestTrainedInController {
 	
     @Test //Negative
     public void testGetListOfProcedureNegative() throws Exception{
-    	
+    	ProceduresDto dto = new ProceduresDto();
+		List<Object> mockList = Arrays.asList(dto);
+		when(trainedInService.getListOfProcedure()).thenThrow( new ProcedureNotFoundException("No Procedure Found"));
+		mockMvc.perform(get("/trained_in/").content(asJsonString(dto))
+		.header(HttpHeaders.AUTHORIZATION, "Bearer " + token()))
+		.andExpect(status().isNotFound());
+		verify(trainedInService, times(1)).getListOfProcedure();
     }
     
 	@Test
@@ -110,7 +119,15 @@ class TestTrainedInController {
 	
 	@Test //Negative
 	public void testGetListofTreatmentByPhysicianIdNegative() throws Exception {
-		
+		Integer physicianid = 1;
+		ProceduresDto dto = new ProceduresDto();
+		List<ProceduresDto> mockList = Arrays.asList(dto);
+		when(trainedInService.getListOfTreatmentByPhysicianId(physicianid)).thenThrow( new ProcedureNotFoundException("No Procedure Found"));
+		mockMvc.perform(get("/trained_in/treatment/{physicianid}", physicianid)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.content(asJsonString(dto)))
+				.andExpect(status().isNotFound());
+		verify(trainedInService, times(1)).getListOfTreatmentByPhysicianId(physicianid);
 	}
 
 	public static String asJsonString(Object object) {
@@ -137,7 +154,15 @@ class TestTrainedInController {
 	
 	@Test //Negative
 	public void testGetListofPhysicianByProcedureIdNegative() throws Exception {
-		
+		Integer procedureid = 1;
+		PhysicianDto dto = new PhysicianDto();
+		List<PhysicianDto> mockList = Arrays.asList(dto);
+		when(trainedInService.getListOfPhysicianByProcedureId(procedureid)).thenThrow( new ProcedureNotFoundException("No Procedure Found"));
+		mockMvc.perform(get("/trained_in/physician/{procedureid}", procedureid)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.content(asJsonString(dto)))
+				.andExpect(status().isNotFound());
+		verify(trainedInService, times(1)).getListOfPhysicianByProcedureId(procedureid);
 		
 	}
 
@@ -154,7 +179,13 @@ class TestTrainedInController {
 	
 	@Test //Negative
 	public void testGetListOfProceduresExpiredInMonthNegative() throws Exception {
-		
+		ProceduresDto dto = new ProceduresDto();
+		List<ProceduresDto> mockList = Arrays.asList(dto);
+		when(trainedInService.getListOfProceduresOfOneMonthExpiry()).thenThrow( new ProcedureNotFoundException("No Procedure Found"));
+		mockMvc.perform(get("/trained_in/expiredsooncerti")
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.content(asJsonString(dto))).andExpect(status().isNotFound());
+		verify(trainedInService, times(1)).getListOfProceduresOfOneMonthExpiry();
 	}
 
 	@Test
@@ -172,6 +203,15 @@ class TestTrainedInController {
 	
 	@Test //Negative
 	public void testUpdateCertificationNegative() throws Exception {
+		Integer physicianid = 1;
+		Integer procedureid = 2;
+		LocalDateTime expiry = LocalDateTime.now();
+		when(trainedInService.updateCertificationExpiry(eq(physicianid), eq(procedureid), eq(expiry))).thenThrow( new ProcedureNotFoundException("No Procedure Found"));
+		mockMvc.perform(put("/trained_in/certificationexpiry/{physicianid}/{procedureid}", physicianid, procedureid)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + token())
+				.contentType(MediaType.APPLICATION_JSON).content("\"" + expiry.toString() + "\""))
+				.andExpect(status().isNotFound());
+		verify(trainedInService, times(1)).updateCertificationExpiry(physicianid, procedureid, expiry);
 		
 	}
 }
