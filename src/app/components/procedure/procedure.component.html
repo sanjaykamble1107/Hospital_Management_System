@@ -15,7 +15,7 @@
             class="form-control"
             placeholder="Enter Name"
             formControlName="name"
-            pattern="[A-Za-z\s\.\<>]"
+            pattern="^[A-Za-z.\s]+$"
             required />
            <div *ngIf="procedureForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
            </div>
