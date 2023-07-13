@@ -84,6 +84,7 @@
           <button
             (click)="addTrainedIn(trainedInFormData)"
             class="btn btn-outline-dark"
+            [disabled]="!trainedInFormData.valid"
           >
             Add TrainedIn
           </button>

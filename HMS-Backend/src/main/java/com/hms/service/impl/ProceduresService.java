@@ -1,19 +1,17 @@
 package com.hms.service.impl;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import com.hms.dto.ProceduresDto;
 import com.hms.dto.ResponseMessageDto;
 import com.hms.entity.Procedures;
 import com.hms.exception.model.ProcedureNotFoundException;
-import com.hms.exception.model.ValidationException;
 import com.hms.repository.ProceduresRepository;
 import com.hms.service.inter.IProceduresService;
 

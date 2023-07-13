@@ -1,25 +1,25 @@
-<form [formGroup]="departmentForm" #departmentFormData="ngForm">
+<form [formGroup]="procedureForm" #procedureFormData="ngForm">
   <div class="card custom-card shadow col-md-12 m-2 border-0">
     <div
       class="card-header text-center border-0"
       style="background-color: #f2dcff"
     >
-      <h3>Department Registration</h3>
+      <h3>Procedure  {{ isUpdate ? "Update" : "Registration" }}</h3>
     </div>
     <div class="card-body border-0 center">
       <div class="row m-2">
-        <div class="col-md-4"><label class="form-label">Name</label></div>
+        <div class="col-md-4"><label class="form-label"> Name</label></div>
         <div class="col-md-7">
           <input
             type="text"
             class="form-control"
-            placeholder="Enter dept Name"
+            placeholder="Enter Name"
             formControlName="name"
             pattern="^[A-Za-z.\s]+$"
             required
           />
           <div
-            *ngIf="departmentForm.get('name').hasError('pattern')"
+            *ngIf="procedureForm.get('name').hasError('pattern')"
             class="requiredField"
           >
             Only letters are allowed
@@ -34,7 +34,7 @@
             class="bi bi-pencil"
             viewBox="0 0 16 16"
             (click)="enableName()"
-            *ngIf="isInputDisabledName && isUpdate"
+            *ngIf="isUpdate && isInputDisabledName"
           >
             <path
               d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
@@ -43,25 +43,15 @@
         </div>
       </div>
       <div class="row m-2">
-        <div class="col-md-4"><label class="form-label"> Head</label></div>
+        <div class="col-md-4"><label class="form-label"> Cost</label></div>
         <div class="col-md-7">
-          <select
-            name="head"
-            class="form-select"
+          <input
+            type="Number"
+            class="form-control"
+            placeholder="Enter Cost"
+            formControlName="cost"
             required
-            formControlName="head"
-          >
-            <option value="" disabled selected hidden>
-              Select Head Physician
-            </option>
-            <option
-              *ngFor="let pcp of physicianlist"
-              value="{{ pcp.employeeId }}"
-            >
-              {{ pcp.employeeId }} -
-              {{ pcp.name }}
-            </option>
-          </select>
+          />
         </div>
         <div class="col-md-1">
           <svg
@@ -71,8 +61,8 @@
             fill="currentColor"
             class="bi bi-pencil"
             viewBox="0 0 16 16"
-            (click)="enableHead()"
-            *ngIf="isInputDisabledHead && isUpdate"
+            (click)="enableCost()"
+            *ngIf="isUpdate && isInputDisabledCost"
           >
             <path
               d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
@@ -84,16 +74,18 @@
       <div class="d-flex align-items-center justify-content-center">
         <div class="row m-2">
           <button
-            (click)="submitDepartment(departmentFormData)"
+            (click)="submitData(procedureFormData)"
             class="btn btn-outline-dark"
+            [disabled]="!procedureFormData.valid"
+
           >
-            {{ isUpdate ? "Update" : "Add Department" }}
+            {{ isUpdate ? "Update" : "Add Procedure" }}
           </button>
         </div>
         <div class="row m-2">
           <button
             type="reset"
-            (click)="departmentFormData.reset()"
+            (click)="procedureFormData.reset()"
             class="btn btn-outline-danger"
             *ngIf="!isUpdate"
           >

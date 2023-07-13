@@ -3,18 +3,15 @@ package com.hms.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hms.dto.DepartmentDto;
 import com.hms.dto.PhysicianDto;
 import com.hms.dto.ResponseMessageDto;
 import com.hms.entity.Department;
 import com.hms.entity.Physician;
 import com.hms.exception.model.DepartmentNotFoundException;
-import com.hms.exception.model.ValidationException;
 import com.hms.repository.DepartmentRepository;
 import com.hms.service.inter.IDepartmentService;
 

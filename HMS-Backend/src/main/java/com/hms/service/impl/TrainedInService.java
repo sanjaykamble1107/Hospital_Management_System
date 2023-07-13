@@ -4,11 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hms.dto.PhysicianDto;
 import com.hms.dto.ProceduresDto;
 import com.hms.dto.ResponseMessageDto;
@@ -18,7 +16,6 @@ import com.hms.entity.Procedures;
 import com.hms.entity.TrainedIn;
 import com.hms.entity.TrainedInCompositeId;
 import com.hms.exception.model.TrainedInNotFoundException;
-import com.hms.exception.model.ValidationException;
 import com.hms.repository.TrainedInRepository;
 import com.hms.service.inter.ITrainedInService;
 

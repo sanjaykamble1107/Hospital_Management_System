@@ -4,7 +4,7 @@
       class="card-header text-center border-0"
       style="background-color: #f2dcff"
     >
-      <h3>Patient Registration</h3>
+      <h3>Patient {{ isUpdate ? "Update" : "Registration" }}</h3>
     </div>
     <div class="card-body">
       <div class="row m-2">
@@ -16,9 +16,14 @@
             formControlName="name"
             class="form-control"
             pattern="^[A-Za-z.\s]+$"
-             required />
-            <div *ngIf="patientForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
-            </div>
+            required
+          />
+          <div
+            *ngIf="patientForm.get('name').hasError('pattern')"
+            class="requiredField"
+          >
+            Only letters are allowed
+          </div>
         </div>
       </div>
       <div class="row m-2">
@@ -59,7 +64,14 @@
             formControlName="phone"
             placeholder="Enter Phoneno"
             required
+            pattern="^[6789]\d{9}$"
           />
+          <div
+            *ngIf="patientForm.get('phone').hasError('pattern')"
+            class="requiredField"
+          >
+            Invalid phone number.
+          </div>
         </div>
         <div class="col-md-1">
           <svg
@@ -96,7 +108,7 @@
         <div class="col-md-7">
           <select name="pcp" class="form-select" required formControlName="pcp">
             <option value="" disabled selected hidden>Select PCP</option>
-          
+
             <option
               *ngFor="let pcp of physicianlist"
               value="{{ pcp.employeeId }}"
@@ -113,6 +125,7 @@
           <button
             class="btn btn-outline-dark"
             (click)="submitPatient(patientFormData)"
+            [disabled]="!patientFormData.valid"
           >
             {{ isUpdate ? "Update Patient" : "Add Patient" }}
           </button>

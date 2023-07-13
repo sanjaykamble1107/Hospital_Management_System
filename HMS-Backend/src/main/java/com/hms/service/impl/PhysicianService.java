@@ -3,16 +3,13 @@ package com.hms.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hms.dto.PhysicianDto;
 import com.hms.dto.ResponseMessageDto;
 import com.hms.entity.Physician;
 import com.hms.exception.model.PhysicianNotFoundException;
-import com.hms.exception.model.ValidationException;
 import com.hms.repository.PhysicianRepository;
 import com.hms.service.inter.IPhysicianService;
 

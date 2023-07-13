@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ExceptionResponse> handler(ValidationException ex) {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), ex.getMessage());
 		ResponseEntity<ExceptionResponse> response = new ResponseEntity<ExceptionResponse>(exceptionResponse,
-				HttpStatus.EXPECTATION_FAILED);
+				HttpStatus.BAD_REQUEST);
 		return response;
 	}
 
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
 		ValidationExceptionResponse exceptionResponse = new ValidationExceptionResponse(LocalDateTime.now(),
 				"Validation Failed", validation.toString());
 		ResponseEntity<ValidationExceptionResponse> response = new ResponseEntity<ValidationExceptionResponse>(
-				exceptionResponse, HttpStatus.EXPECTATION_FAILED);
+				exceptionResponse, HttpStatus.BAD_REQUEST);
 		return response;
 	}
 

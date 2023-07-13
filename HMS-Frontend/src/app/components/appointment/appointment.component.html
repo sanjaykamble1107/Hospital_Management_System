@@ -4,7 +4,7 @@
       class="card-header text-center border-0"
       style="background-color: #f2dcff"
     >
-      <h3>Appointment Registration</h3>
+      <h3>Appointment {{ isUpdate ? "Update" : "Registration" }}</h3>
     </div>
     <div class="card-body">
       <div class="row m-2">
@@ -130,6 +130,7 @@
           <button
             class="btn btn-outline-dark"
             (click)="submitAppointment(appointmentFormData)"
+            [disabled]="!appointmentFormData.valid"
           >
             {{ isUpdate ? "Update Appointment" : "Book Appointment" }}
           </button>
@@ -148,4 +149,3 @@
     </div>
   </div>
 </form>
-<!-- (input)="handleroom($event)" -->

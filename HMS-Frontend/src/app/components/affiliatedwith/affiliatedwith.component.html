@@ -71,6 +71,8 @@
           <button
             (click)="addAffiliatedWith(affiliatedWithFormData)"
             class="btn btn-outline-dark"
+            [disabled]="!affiliatedWithFormData.valid"
+
           >
             Add AffiliatedWith
           </button>

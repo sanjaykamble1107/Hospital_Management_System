@@ -4,11 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hms.dto.AppointmentDto;
 import com.hms.dto.NurseDto;
 import com.hms.dto.PatientDto;
@@ -21,7 +19,6 @@ import com.hms.entity.Patient;
 import com.hms.entity.Physician;
 import com.hms.entity.Room;
 import com.hms.exception.model.AppointmentNotFoundException;
-import com.hms.exception.model.ValidationException;
 import com.hms.repository.AppointmentRepository;
 import com.hms.repository.RoomRepository;
 import com.hms.service.inter.IAppointmentService;
