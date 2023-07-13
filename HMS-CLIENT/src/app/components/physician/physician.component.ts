@@ -103,7 +103,6 @@ export class PhysicianComponent {
     this.physicianForm.get('ssn').enable();
     this.physicianForm.get('position').enable();
     this.physicianForm.get('name').enable();
-    this.physicianForm.get('employeeId').enable();
   }
 
   alphaOnly(e: any) {  
