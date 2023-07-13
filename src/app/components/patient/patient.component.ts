@@ -10,7 +10,6 @@ import { PhysicianServiceService } from 'src/app/service/Physician/physician-ser
 })
 export class PatientComponent implements OnInit {
   patientForm: any = new FormGroup({
-    ssn: new FormControl(),
     name: new FormControl(''),
     address: new FormControl(''),
     phone: new FormControl(),
@@ -35,7 +34,6 @@ export class PatientComponent implements OnInit {
     if (this.entityId) {
       this.isUpdate = true;
       this.patientService.getById(this.entityId).subscribe((response: any) => this.patientForm = new FormGroup({
-        ssn: new FormControl({ value: response['ssn'], disabled: true }),
         name: new FormControl({ value: response['name'], disabled: true }),
         address: new FormControl({ value: response['address'], disabled: true }),
         phone: new FormControl({ value: response['phone'], disabled: true }),
@@ -94,7 +92,6 @@ export class PatientComponent implements OnInit {
   enableAll() {
     this.patientForm.get('phone').enable();
     this.patientForm.get('address').enable();
-    this.patientForm.get('ssn').enable();
     this.patientForm.get('name').enable();
     this.patientForm.get('pcp').enable();
     this.patientForm.get('insuranceID').enable();

@@ -8,19 +8,6 @@
     </div>
     <div class="card-body">
       <div class="row m-2">
-        <div class="col-md-4">SSN</div>
-        <div class="col-md-7">
-          <input
-            type="Number"
-            placeholder="Enter SSN"
-            min="0"
-            formControlName="ssn"
-            class="form-control"
-            required
-          />
-        </div>
-      </div>
-      <div class="row m-2">
         <div class="col-md-4">Name</div>
         <div class="col-md-7">
           <input
@@ -28,7 +15,7 @@
             placeholder="Enter Name"
             formControlName="name"
             class="form-control"
-            pattern="[a-zA-Z]+"
+            pattern="[A-Za-z\s\.\<>]"
              required />
             <div *ngIf="patientForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
             </div>

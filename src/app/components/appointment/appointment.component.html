@@ -8,21 +8,6 @@
     </div>
     <div class="card-body">
       <div class="row m-2">
-        <div class="col-md-3">
-          <label class="form-label">Appointment ID</label>
-        </div>
-        <div class="col-md-7">
-          <input
-            type="number"
-            class="form-control"
-            min="0"
-            placeholder="Enter AppointmentID"
-            formControlName="appointmentId"
-            required
-          />
-        </div>
-      </div>
-      <div class="row m-2">
         <div class="col-md-3"><label class="form-label">Patient ID</label></div>
         <div class="col-md-7">
           <input
@@ -49,7 +34,7 @@
               value="{{ nurse.employeeId }}"
             >
               {{ nurse.employeeId }} -
-              {{ nurse.name }}
+              {{ nurse.name }} 
             </option>
           </select>
         </div>

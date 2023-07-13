@@ -13,7 +13,6 @@ import { RoomServiceService } from 'src/app/service/Room/room-service.service';
 })
 export class AppointmentComponent {
   appointmentForm: any = new FormGroup({
-    appointmentId: new FormControl(),
     patient: new FormControl(),
     prepNurse: new FormControl(""),
     physician: new FormControl(""),
@@ -57,12 +56,8 @@ export class AppointmentComponent {
       this.isUpdate = true;
 
       this.appointmentservice.getByAppId(this.entityId).subscribe(
-        (response: any) =>
+        (response: any) => {
           (this.appointmentForm = new FormGroup({
-            appointmentId: new FormControl({
-              value: response['appointmentId'],
-              disabled: true,
-            }),
             patient: new FormControl({
               value: response['patient'],
               disabled: true,
@@ -88,6 +83,7 @@ export class AppointmentComponent {
               disabled: true,
             }),
           }))
+        }
       );
     } else {
       this.isUpdate = false;
@@ -121,7 +117,6 @@ export class AppointmentComponent {
     this.isExaminationRoomEnable = true;
   }
   enableAll() {
-    this.appointmentForm.get('appointmentId').enable();
     this.appointmentForm.get('patient').enable();
     this.appointmentForm.get('prepNurse').enable();
     this.appointmentForm.get('physician').enable();

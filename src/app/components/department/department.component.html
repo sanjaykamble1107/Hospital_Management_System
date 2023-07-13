@@ -8,21 +8,6 @@
     </div>
     <div class="card-body border-0 center">
       <div class="row m-2">
-        <div class="col-md-4">
-          <label class="form-label">Department ID</label>
-        </div>
-        <div class="col-md-7">
-          <input
-            type="number"
-            min="0"
-            class="form-control"
-            placeholder="Enter Department ID"
-            formControlName="departmentId"
-            required
-          />
-        </div>
-      </div>
-      <div class="row m-2">
         <div class="col-md-4"><label class="form-label">Name</label></div>
         <div class="col-md-7">
           <input
@@ -30,10 +15,15 @@
             class="form-control"
             placeholder="Enter dept Name"
             formControlName="name"
-            pattern="[a-zA-Z]+"
-             required />
-            <div *ngIf="departmentForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
-            </div>
+            pattern="[A-Za-z\s\.\<>]"
+            required
+          />
+          <div
+            *ngIf="departmentForm.get('name').hasError('pattern')"
+            class="requiredField"
+          >
+            Only letters are allowed
+          </div>
         </div>
         <div class="col-md-1">
           <svg
@@ -55,8 +45,15 @@
       <div class="row m-2">
         <div class="col-md-4"><label class="form-label"> Head</label></div>
         <div class="col-md-7">
-          <select name="head" class="form-select" required formControlName="head">
-            <option value="" disabled selected hidden>Select Head Physician</option>
+          <select
+            name="head"
+            class="form-select"
+            required
+            formControlName="head"
+          >
+            <option value="" disabled selected hidden>
+              Select Head Physician
+            </option>
             <option
               *ngFor="let pcp of physicianlist"
               value="{{ pcp.employeeId }}"
@@ -66,7 +63,7 @@
             </option>
           </select>
         </div>
-         <div class="col-md-1">
+        <div class="col-md-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -90,7 +87,7 @@
             (click)="submitDepartment(departmentFormData)"
             class="btn btn-outline-dark"
           >
-            {{isUpdate ? "Update": "Add Department"}}
+            {{ isUpdate ? "Update" : "Add Department" }}
           </button>
         </div>
         <div class="row m-2">

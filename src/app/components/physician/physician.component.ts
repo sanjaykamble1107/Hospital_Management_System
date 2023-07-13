@@ -12,7 +12,6 @@ import { PhysicianServiceService } from 'src/app/service/Physician/physician-ser
 })
 export class PhysicianComponent {
   physicianForm: any = new FormGroup({
-    employeeId: new FormControl(),
     name: new FormControl(''),
     position: new FormControl(''),
     ssn: new FormControl()
@@ -34,7 +33,6 @@ export class PhysicianComponent {
       this.isUpdate = true;
       this.physicianService.getByEmpId(this.router.snapshot.params['employeeId']).subscribe((result: any) => {
         this.physicianForm = new FormGroup({
-          employeeId: new FormControl({ value: result['employeeId'], disabled: true, }),
           name: new FormControl({ value: result['name'], disabled: true }),
           position: new FormControl({ value: result['position'], disabled: true }),
           ssn: new FormControl({ value: result['ssn'], disabled: true })

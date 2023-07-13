@@ -12,26 +12,41 @@
           <label class="form-label">Physician</label>
         </div>
         <div class="col-md-8">
-          <input
-            type="number"
-            class="form-control"
-            min="0"
-            placeholder="Enter Physician"
-            formControlName="physician"
+          <select
+            name="physician"
+            class="form-select"
             required
-          />
+            formControlName="physician"
+          >
+            <option selected hidden disabled value="">Select Physician</option>
+            <option
+              *ngFor="let physician of physicianList"
+              value="{{ physician.employeeId }}"
+            >
+              {{ physician.employeeId }} -
+              {{ physician.name }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row m-2">
         <div class="col-md-4"><label class="form-label">Treatment</label></div>
         <div class="col-md-8">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Enter Treatment"
-            formControlName="treatment"
+          <select
+            name="treatment"
+            class="form-select"
             required
-          />
+            formControlName="treatment"
+          >
+            <option selected hidden disabled value="">Select Procedure</option>
+            <option
+              *ngFor="let procedure of procedureList"
+              value="{{ procedure.code }}"
+            >
+              {{ procedure.code }} -
+              {{ procedure.name }}
+            </option>
+          </select>
         </div>
       </div>
 

@@ -6,20 +6,11 @@
     <div class="card-body border-0 center">
       <div class="row m-2">
         <div class="col-md-4">
-          <label class="form-label">EmployeeID</label>
-        </div>
-        <div class="col-md-7">
-          <input type="number" min="0" class="form-control" placeholder="Enter EmployeeID" formControlName="employeeId"
-            required />
-        </div>
-      </div>
-      <div class="row m-2">
-        <div class="col-md-4">
           <label class="form-label">Physician Name</label>
         </div>
         <div class="col-md-7">
           <input type="text" class="form-control" placeholder="Enter Physician Name" formControlName="name"
-            pattern="[a-zA-Z]+" required />
+            pattern="[A-Za-z\s\.\<>]" required />
           <div *ngIf="physicianForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed
           </div>
         </div>
@@ -37,7 +28,7 @@
         </div>
         <div class="col-md-7">
           <input type="text" class="form-control" placeholder="Enter Physician Position" formControlName="position"
-            pattern="[a-zA-Z]+" required />
+            pattern="[A-Za-z\s\.\<>]" required />
           <div *ngIf="physicianForm.get('position').hasError('pattern')" class="requiredField">Only letters are allowed
           </div>
         </div>

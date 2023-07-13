@@ -9,18 +9,6 @@
 
     <div class="card-body mt-4 border-0">
       <div class="row m-2">
-        <div class="col-md-4">EmployeeID</div>
-        <div class="col-md-7">
-          <input
-            type="Number"
-            placeholder="Enter EmployeeID"
-            formControlName="employeeId"
-            class="form-control"
-            required
-          />
-        </div>
-      </div>
-      <div class="row m-2">
         <div class="col-md-4">Name</div>
         <div class="col-md-7">
           <input
@@ -28,36 +16,31 @@
             placeholder="Enter Name"
             formControlName="name"
             class="form-control"
-            pattern="[a-zA-Z]+"
+            pattern="[A-Za-z\s\.\<>]"
             required
           />
-          <div *ngIf="nurseForm.get('name').hasError('pattern')" class="requiredField">Only letters are allowed</div>
-
+          <div
+            *ngIf="nurseForm.get('name').hasError('pattern')"
+            class="requiredField"
+          >
+            Only letters are allowed
+          </div>
         </div>
       </div>
       <div class="row m-2">
         <div class="col-md-4">Position</div>
         <div class="col-md-7">
           <select
-          name="registered"
-          class="form-select"
-         required
-         formControlName="position"
-        ><option value="" disabled selected hidden>Select Position</option>
-        <option value="1">Nurse</option>
-          <option value="2">Head Nurse</option>
-        </select>
-          <!-- <input
-            type="text"
-            placeholder="Enter Position"
-            formControlName="position"
-            class="form-control"
-            pattern="[a-zA-Z]+"
+            name="registered"
+            class="form-select"
             required
-          />
-          <div *ngIf="nurseForm.get('position').hasError('pattern')" class="requiredField">Only letters are allowed</div>
---->
-        </div> 
+            formControlName="position"
+          >
+            <option value="" disabled selected hidden>Select Position</option>
+            <option value="Nurse">Nurse</option>
+            <option value="Head Nurse">Head Nurse</option>
+          </select>
+        </div>
       </div>
       <div class="row m-2">
         <div class="col-md-4">Registered</div>
@@ -66,11 +49,12 @@
             name="registered"
             class="form-select"
             required
-            formControlName ="registered"
-          
+            formControlName="registered"
           >
-          <option value="" disabled selected hidden>Select Registration</option>
-          <option value="true">Yes</option>
+            <option value="" disabled selected hidden>
+              Select Registration
+            </option>
+            <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
         </div>
@@ -84,7 +68,7 @@
             viewBox="0 0 16 16"
             (click)="enableRegistered()"
             *ngIf="isInputDisabledRegistered && isUpdate"
-            >
+          >
             <path
               d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
             />
@@ -112,7 +96,7 @@
             viewBox="0 0 16 16"
             (click)="enableSSN()"
             *ngIf="isInputDisabledSSN && isUpdate"
-            >
+          >
             <path
               d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
             />
@@ -121,10 +105,7 @@
       </div>
       <div class="d-flex align-items-center justify-content-center">
         <div class="row m-2">
-          <button
-            class="btn btn-outline-dark"
-            (click)="submit(nurseFormData)"
-          >
+          <button class="btn btn-outline-dark" (click)="submit(nurseFormData)">
             {{ isUpdate ? "Update" : "Add Nurse" }}
           </button>
         </div>

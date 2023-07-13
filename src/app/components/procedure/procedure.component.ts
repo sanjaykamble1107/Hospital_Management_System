@@ -10,7 +10,6 @@ import { ProcedureServiceService } from 'src/app/service/Procedure/procedure-ser
 })
 export class ProcedureComponent implements OnInit {
   procedureForm: any = new FormGroup({
-    code: new FormControl(),
     name: new FormControl(''),
     cost: new FormControl('')
   })
@@ -28,7 +27,6 @@ export class ProcedureComponent implements OnInit {
     if (this.entityId) {
       this.isUpdate = true;
       this.procedureService.getById(this.entityId).subscribe((result: any) => this.procedureForm = new FormGroup({
-        code: new FormControl({ value: result['code'], disabled: true }),
         name: new FormControl({ value: result['name'], disabled: true }),
         cost: new FormControl({ value: result['cost'], disabled: true })
       }))
@@ -80,6 +78,5 @@ export class ProcedureComponent implements OnInit {
   enableAll() {
     this.procedureForm.get('cost').enable();
     this.procedureForm.get('name').enable();
-    this.procedureForm.get('code').enable();
   }
 }

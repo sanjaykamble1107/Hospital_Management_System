@@ -10,7 +10,6 @@ import { NurseServiceService } from 'src/app/service/Nurse/nurse-service.service
 })
 export class NurseComponent implements OnInit {
   nurseForm: any = new FormGroup({
-    employeeId: new FormControl(),
     name: new FormControl(''),
     position: new FormControl(""),
     registered: new FormControl(""),
@@ -32,7 +31,6 @@ export class NurseComponent implements OnInit {
       this.isUpdate = true;
       this.nurseService.getByID(this.router.snapshot.params['id']).subscribe((result: any) => {
         this.nurseForm = new FormGroup({
-          employeeId: new FormControl({ value: result['employeeId'], disabled: true }),
           name: new FormControl({ value: result['name'], disabled: true }),
           position: new FormControl({ value: result['position'], disabled: true }),
           registered: new FormControl({ value: result['registered'], disabled: true }),
@@ -89,7 +87,6 @@ export class NurseComponent implements OnInit {
 
   enableAll(){
     this.nurseForm.get('ssn').enable();
-    this.nurseForm.get('employeeId').enable();
     this.nurseForm.get('name').enable();
     this.nurseForm.get('registered').enable();
     this.nurseForm.get('position').enable();

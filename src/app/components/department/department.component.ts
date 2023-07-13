@@ -11,14 +11,13 @@ import { PhysicianServiceService } from 'src/app/service/Physician/physician-ser
 })
 export class DepartmentComponent {
   departmentForm: any = new FormGroup({
-    departmentId: new FormControl(),
     name: new FormControl(''),
     head: new FormControl("")
   })
 
-  constructor(public departmentService: DepartmentServiceService, private router: ActivatedRoute, private route: Router,public physicianService: PhysicianServiceService) { }
+  constructor(public departmentService: DepartmentServiceService, private router: ActivatedRoute, private route: Router, public physicianService: PhysicianServiceService) { }
   inputValue: string = '';
- 
+
   isUpdate: boolean = false;
 
   isInputDisabledName: boolean = true;
@@ -34,7 +33,6 @@ export class DepartmentComponent {
     if (this.entityId) {
       this.isUpdate = true;
       this.departmentService.getById(this.entityId).subscribe((response: any) => this.departmentForm = new FormGroup({
-        departmentId: new FormControl({ value: response['departmentId'], disabled: true }),
         name: new FormControl({ value: response['name'], disabled: true }),
         head: new FormControl({ value: response['head'], disabled: true })
       }))
@@ -47,11 +45,11 @@ export class DepartmentComponent {
     if (data.valid) {
       if (this.isUpdate) {
         if (this.isNameEnable) {
-            this.enableAll();
-            this.departmentService.updateDepartmentName(this.entityId, data.value).subscribe((result) => {
+          this.enableAll();
+          this.departmentService.updateDepartmentName(this.entityId, data.value).subscribe((result) => {
             alert("Name Updated!")
             this.route.navigate(["/DepartmentList"])
-          })          
+          })
         }
 
         if (this.isHeadEnable) {
@@ -85,9 +83,8 @@ export class DepartmentComponent {
     this.isHeadEnable = true;
   }
 
-  enableAll(){
+  enableAll() {
     this.departmentForm.get('name').enable();
-    this.departmentForm.get('departmentId').enable();
     this.departmentForm.get('head').enable();
   }
 }
