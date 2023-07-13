@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppointmentServiceService } from 'src/app/service/Appointment/appointment-service.service';
 import { NurseServiceService } from 'src/app/service/Nurse/nurse-service.service';
 import { PhysicianServiceService } from 'src/app/service/Physician/physician-service.service';
+import { RoomServiceService } from 'src/app/service/Room/room-service.service';
 
 @Component({
   selector: 'app-appointment',
@@ -11,39 +12,49 @@ import { PhysicianServiceService } from 'src/app/service/Physician/physician-ser
   styleUrls: ['./appointment.component.css'],
 })
 export class AppointmentComponent {
-  appointmentForm :any= new FormGroup({
+  appointmentForm: any = new FormGroup({
     appointmentId: new FormControl(),
     patient: new FormControl(),
-    prepNurse: new FormControl(),
-    physician: new FormControl(),
+    prepNurse: new FormControl(""),
+    physician: new FormControl(""),
     startDateTime: new FormControl(),
     endDateTime: new FormControl(),
-    examinationRoom: new FormControl(),
+    examinationRoom: new FormControl(""),
   });
-  constructor(
-    public appointmentservice: AppointmentServiceService,
-    public physicianService: PhysicianServiceService,
-    public nurseService: NurseServiceService,
-    private router: ActivatedRoute,
-    private route: Router
-  ) {}
+
+  Roomlist!: any[];
   nurselist: any = [];
   physicianlist: any = [];
   isUpdate: boolean = false;
   isInputDisabledExaminationRoom: boolean = true;
   isExaminationRoomEnable: boolean = false;
   entityId = this.router.snapshot.params['appointmentId'];
+  minDateTime: string;
 
+  constructor(
+    public appointmentservice: AppointmentServiceService,
+    public physicianService: PhysicianServiceService,
+    public nurseService: NurseServiceService,
+    public roomService: RoomServiceService,
+    private router: ActivatedRoute,
+    private route: Router
+  ) {
+    const now = new Date();
+    this.minDateTime = now.toISOString().slice(0, 16);
+  }
   ngOnInit(): void {
-    if (this.entityId) {
-      this.isUpdate = true;
-      this.physicianService
+    this.physicianService
       .get()
       .subscribe((response: any) => (this.physicianlist = [...response]));
 
     this.nurseService
       .get()
       .subscribe((response: any) => (this.nurselist = [...response]));
+    this.roomService
+      .get()
+      .subscribe((response: any) => (this.Roomlist = [...response]));
+    if (this.entityId) {
+      this.isUpdate = true;
 
       this.appointmentservice.getByAppId(this.entityId).subscribe(
         (response: any) =>

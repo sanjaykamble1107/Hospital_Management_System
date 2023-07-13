@@ -108,7 +108,7 @@
         <div class="col-md-4">PCP</div>
         <div class="col-md-7">
           <select name="pcp" class="form-select" required formControlName="pcp">
-            <option>--Select---</option>
+            <option value="" disabled selected hidden>Select PCP</option>
           
             <option
               *ngFor="let pcp of physicianlist"

@@ -12,9 +12,9 @@ import { PhysicianServiceService } from 'src/app/service/Physician/physician-ser
 })
 export class AffiliatedwithComponent {
   affiliatedWithForm = new FormGroup({
-    physician: new FormControl(),
-    department: new FormControl(),
-    darkAffiliation: new FormControl(),
+    physician: new FormControl(""),
+    department: new FormControl(""),
+    affiliation: new FormControl(""),
   });
 
   constructor(

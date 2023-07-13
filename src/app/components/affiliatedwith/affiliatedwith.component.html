@@ -16,7 +16,7 @@
             required
             formControlName="physician"
           >
-            <option>--select--</option>
+          <option value="" disabled selected hidden>Select Physician</option>
             <option
               *ngFor="let physician of physicianlist"
               value="{{ physician.employeeId }}"
@@ -36,7 +36,7 @@
             required
             formControlName="department"
           >
-            <option>--select--</option>
+          <option value="" disabled selected hidden>Select Department</option>
             <option
               *ngFor="let dept of departmentlist"
               value="{{ dept.departmentId }}"
@@ -55,10 +55,10 @@
           <select
             name="registered"
             class="form-control"
-            formControlName="darkAffiliation"
+            formControlName="affiliation"
             required
           >
-            <option>--select--</option>
+          <option value="" disabled selected hidden>Select Affiliation</option>
 
             <option value="true">Yes</option>
             <option value="false">No</option>

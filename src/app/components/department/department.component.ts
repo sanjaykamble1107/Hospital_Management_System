@@ -13,7 +13,7 @@ export class DepartmentComponent {
   departmentForm: any = new FormGroup({
     departmentId: new FormControl(),
     name: new FormControl(''),
-    head: new FormControl('')
+    head: new FormControl("")
   })
 
   constructor(public departmentService: DepartmentServiceService, private router: ActivatedRoute, private route: Router,public physicianService: PhysicianServiceService) { }

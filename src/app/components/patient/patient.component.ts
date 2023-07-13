@@ -15,7 +15,7 @@ export class PatientComponent implements OnInit {
     address: new FormControl(''),
     phone: new FormControl(),
     insuranceID: new FormControl(),
-    pcp: new FormControl(),
+    pcp: new FormControl(""),
   });
 
   constructor(public patientService: PatientServiceService, public physicianService: PhysicianServiceService, private router: ActivatedRoute, private route: Router) { }

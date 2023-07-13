@@ -38,7 +38,16 @@
       <div class="row m-2">
         <div class="col-md-4">Position</div>
         <div class="col-md-7">
-          <input
+          <select
+          name="registered"
+          class="form-select"
+         required
+         formControlName="position"
+        ><option value="" disabled selected hidden>Select Position</option>
+        <option value="1">Nurse</option>
+          <option value="2">Head Nurse</option>
+        </select>
+          <!-- <input
             type="text"
             placeholder="Enter Position"
             formControlName="position"
@@ -47,8 +56,8 @@
             required
           />
           <div *ngIf="nurseForm.get('position').hasError('pattern')" class="requiredField">Only letters are allowed</div>
-
-        </div>
+--->
+        </div> 
       </div>
       <div class="row m-2">
         <div class="col-md-4">Registered</div>
@@ -56,10 +65,11 @@
           <select
             name="registered"
             class="form-select"
-            formControlName="registered"
             required
+            formControlName ="registered"
+          
           >
-          <option value="" disabled selected hidden>--Select---</option>
+          <option value="" disabled selected hidden>Select Registration</option>
           <option value="true">Yes</option>
             <option value="false">No</option>
           </select>

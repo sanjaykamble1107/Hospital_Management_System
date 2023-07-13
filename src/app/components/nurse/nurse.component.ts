@@ -12,8 +12,8 @@ export class NurseComponent implements OnInit {
   nurseForm: any = new FormGroup({
     employeeId: new FormControl(),
     name: new FormControl(''),
-    position: new FormControl(''),
-    registered: new FormControl(),
+    position: new FormControl(""),
+    registered: new FormControl(""),
     ssn: new FormControl(),
   });
 

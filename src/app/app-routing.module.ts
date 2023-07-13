@@ -18,33 +18,107 @@ import { ProcedurelistComponent } from './components/procedurelist/procedurelist
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
 import { AuthGuard } from './auth/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
-const routes: Routes = [{ path: "", redirectTo: "login", pathMatch: "full" },
-{ path: "login", component: AdminloginComponent },
-{ path: "registration", component: RegisterComponent},
-{ path: "Home", component: DashboardComponent, canActivate: [AuthGuard] },
-{ path: "Physician", component: PhysicianComponent, canActivate: [AuthGuard] },
-{ path: "Patient", component: PatientComponent, canActivate: [AuthGuard] },
-{ path: "Nurse", component: NurseComponent, canActivate: [AuthGuard] },
-{ path: "UpdateNurse/:id", component: NurseComponent, canActivate: [AuthGuard] },
-{ path: "Appointment", component: AppointmentComponent, canActivate: [AuthGuard] },
-{ path: "Department", component: DepartmentComponent, canActivate: [AuthGuard] },
-{ path: "Procedure", component: ProcedureComponent, canActivate: [AuthGuard] },
-{ path: "TrainedIn", component: TrainedInComponent, canActivate: [AuthGuard] },
-{ path: "AffiliatedWith", component: AffiliatedwithComponent, canActivate: [AuthGuard] },
-{ path: "AppointmentList", component: AppointmentlistComponent, canActivate: [AuthGuard] },
-{ path: "PatientList", component: PatienttableComponent, canActivate: [AuthGuard] },
-{ path: "NurseList", component: NursetableComponent, canActivate: [AuthGuard] },
-{ path: "PhysicianList", component: PhysicianlistComponent, canActivate: [AuthGuard] },
-{ path: "DepartmentList", component: DepartmentlistComponent, canActivate: [AuthGuard] },
-{ path: "ProcedureList", component: ProcedurelistComponent, canActivate: [AuthGuard] },
-{ path: "updatephysician/:employeeId", component: PhysicianComponent, canActivate: [AuthGuard] },
-{ path: "updatePatient/:ssn", component: PatientComponent, canActivate: [AuthGuard] },
-{ path: "updateDepartment/:deptId", component: DepartmentComponent, canActivate: [AuthGuard] },
-{ path: "updateProcedure/:code", component: ProcedureComponent, canActivate: [AuthGuard] },
-{ path:"updateAppointment/:appointmentId",component:AppointmentComponent,canActivate: [AuthGuard]},
-{ path: "**", redirectTo: "Home" }];
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: AdminloginComponent },
+  { path: 'registration', component: RegisterComponent },
+  { path: 'Home', component: DashboardComponent, canActivate: [AuthGuard] },
+  {
+    path: 'Physician',
+    component: PhysicianComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'Patient', component: PatientComponent, canActivate: [AuthGuard] },
+  { path: 'Nurse', component: NurseComponent, canActivate: [AuthGuard] },
+  {
+    path: 'UpdateNurse/:id',
+    component: NurseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'Appointment',
+    component: AppointmentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'Department',
+    component: DepartmentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'Procedure',
+    component: ProcedureComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'TrainedIn',
+    component: TrainedInComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'AffiliatedWith',
+    component: AffiliatedwithComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'AppointmentList',
+    component: AppointmentlistComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'PatientList',
+    component: PatienttableComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'NurseList',
+    component: NursetableComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'PhysicianList',
+    component: PhysicianlistComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'DepartmentList',
+    component: DepartmentlistComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'ProcedureList',
+    component: ProcedurelistComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updatephysician/:employeeId',
+    component: PhysicianComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updatePatient/:ssn',
+    component: PatientComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updateDepartment/:deptId',
+    component: DepartmentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updateProcedure/:code',
+    component: ProcedureComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updateAppointment/:appointmentId',
+    component: AppointmentComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '**', redirectTo: 'Home' },
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

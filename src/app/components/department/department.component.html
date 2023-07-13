@@ -56,7 +56,7 @@
         <div class="col-md-4"><label class="form-label"> Head</label></div>
         <div class="col-md-7">
           <select name="head" class="form-select" required formControlName="head">
-            <option>--select--</option>
+            <option value="" disabled selected hidden>Select Head Physician</option>
             <option
               *ngFor="let pcp of physicianlist"
               value="{{ pcp.employeeId }}"

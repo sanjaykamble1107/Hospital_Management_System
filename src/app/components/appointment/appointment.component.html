@@ -11,7 +11,7 @@
         <div class="col-md-3">
           <label class="form-label">Appointment ID</label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <input
             type="number"
             class="form-control"
@@ -24,7 +24,7 @@
       </div>
       <div class="row m-2">
         <div class="col-md-3"><label class="form-label">Patient ID</label></div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <input
             type="number"
             class="form-control"
@@ -36,14 +36,14 @@
       </div>
       <div class="row m-2">
         <div class="col-md-3">Preparation Nurse</div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <select
             name="nurse"
-            class="form-control"
+            class="form-select"
             required
             formControlName="prepNurse"
           >
-            <option>--select--</option>
+            <option value="" disabled selected hidden>Select Nurse</option>
             <option
               *ngFor="let nurse of nurselist"
               value="{{ nurse.employeeId }}"
@@ -56,14 +56,14 @@
       </div>
       <div class="row m-2">
         <div class="col-md-3">Physician ID</div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <select
             name="physician"
-            class="form-control"
+            class="form-select"
             required
             formControlName="physician"
           >
-            <option>--select--</option>
+            <option value="" disabled selected hidden>Select Physician</option>
             <option
               *ngFor="let physician of physicianlist"
               value="{{ physician.employeeId }}"
@@ -79,13 +79,14 @@
         <div class="col-md-3">
           <label class="form-label">Start Date Time</label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <input
             type="datetime-local"
             class="form-control"
             placeholder="Enter Start Date Time"
             formControlName="startDateTime"
             required
+            [min]="minDateTime"
           />
         </div>
       </div>
@@ -94,29 +95,34 @@
         <div class="col-md-3">
           <label class="form-label">End Date Time</label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <input
             type="datetime-local"
             class="form-control"
             placeholder="Enter End Date Time "
             formControlName="endDateTime"
             required
+            [min]="minDateTime"
           />
         </div>
       </div>
 
       <div class="row m-2">
         <div class="col-md-3">Examination Room</div>
-        <div class="col-md-8">
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Enter ExaminationRoom"
-              formControlName="examinationRoom"
-              required
-            />
-          </div>
-         <div class="col-md-1">
+        <div class="col-md-7">
+          <select
+            name="examinationRoom"
+            class="form-select"
+            required
+            formControlName="examinationRoom"
+          >
+          <option value="" disabled selected hidden>Select Room</option>
+          <option *ngFor="let room of Roomlist" value="{{ room.roomNumber }}">
+              {{ room.roomNumber }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
